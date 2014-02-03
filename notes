@@ -1,0 +1,25 @@
+there are:
+  baker's percentage formulas
+    100 flour
+      65 bread flour
+      35 whole wheat
+    2 salt
+    60 water
+    1.5 yeast
+  recipes
+    100 g flour, composed of
+      65 g bread flour
+      35 g whole wheat
+    2 g salt
+    60 g water
+    1.5 g yeast
+    yielding 163 g dough
+We want to:
+  get a formula from a recipe
+  get a recipe from a formula and the quantity of any one of its components
+  show a running weight target in an interactive session:
+    65 g bread flour =  65 g total
+    35 g ww flour    = 100 g total 
+    2  g salt        = 102 g total
+  make a recipe / formula from an interactive running weight target session
+
