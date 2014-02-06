@@ -5,14 +5,14 @@ describe Bakers_percentage do
     @bp = Bakers_percentage.new
   end
 
-  it 'can write and read liquid' do
-    @bp.liquid=35
-    @bp.liquid.should eq 35
+  it 'can write and read liquids' do
+    @bp.liquids=35
+    @bp.liquids.should eq 35
   end
 
-  it 'will not set liquid >100' do
-    @bp.liquid=(101)
-    @bp.liquid.should be_nil
+  it 'will not set liquids >100' do
+    @bp.liquids=101
+    @bp.liquids.should be_false
   end
 end
 
