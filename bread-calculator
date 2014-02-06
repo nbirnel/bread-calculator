@@ -1,13 +1,13 @@
 #!/usr/bin/env ruby
 
-class Formula
+class Bakers_percentage
   def initialize
   end
 
-  attr_reader :liquid_bp
+  attr_reader :liquid
 
-  def liquid_bp=(percentage)
-    @liquid_bp =percentage 
+  def liquid=percent
+    @liquid = percent
   end
 
 end

@@ -1,22 +1,17 @@
 load  "#{File.dirname(__FILE__)}/bread-calculator"
 
-describe Formula do
+describe Bakers_percentage do
   before do
-    @formula = Formula.new
+    @bp = Bakers_percentage.new
   end
 
-  it 'can write liquid_bp' do
-    @formula.liquid_bp=(35).should be_true
+  it 'can write and read liquid' do
+    @bp.liquid=35
+    @bp.liquid.should eq 35
   end
 
-  it 'can write and read liquid_bp' do
-    @formula.liquid_bp=35
-    @formula.liquid_bp.should eq 35
-  end
-
-  it 'will not set liquid_bp >100' do
-    @formula.liquid_bp=(101).should_not be_true
-    # what should it really be? dd
+  it 'will not set liquid >100' do
+    @bp.liquid=(101).should_not be_true
   end
 end
 
