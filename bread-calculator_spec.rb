@@ -11,7 +11,8 @@ describe Bakers_percentage do
   end
 
   it 'will not set liquid >100' do
-    @bp.liquid=(101).should_not be_true
+    @bp.liquid=(101)
+    @bp.liquid.should be_nil
   end
 end
 

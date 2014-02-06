@@ -7,7 +7,9 @@ class Bakers_percentage
   attr_reader :liquid
 
   def liquid=percent
-    @liquid = percent
+    percent.between?(0,100) ? \
+      @liquid = percent : \
+      @liquid = nil
   end
 
 end
