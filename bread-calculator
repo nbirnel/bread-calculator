@@ -1,13 +1,21 @@
 #!/usr/bin/env ruby
 
-class Recipe
-  def initialize
-  end
-end
-
 class Formula
   def initialize
   end
+
+  attr_reader :liquid_bp
+
+  def liquid_bp=(percentage)
+    @liquid_bp =percentage 
+  end
+
+end
+
+class Recipe
+  def initialize
+  end
+
 end
 
 
