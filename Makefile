@@ -1,5 +1,5 @@
 PREFIX = /usr/local
-PROG = bread-calculator
+PROG = bread_calculator
 
 install :: ${PROG} ${PROG}.1
 	mkdir -p ${DESTDIR}${PREFIX}/bin
@@ -16,8 +16,8 @@ pdf :: ${PROG}.1
 clean ::
 	rm -f ${PROG}.ps ${PROG} ${PROG}.pdf
 
-test :: ${PROG} ${PROG}_spec.rb
-	rspec --color ${PROG}_spec.rb
+test :: ${PROG}.rb ${PROG}_spec.rb
+	rspec ${PROG}_spec.rb
 
 remove ::
 	rm -f ${DESTDIR}${PREFIX}/bin/${PROG}
