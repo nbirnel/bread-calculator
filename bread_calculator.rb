@@ -8,7 +8,6 @@ class Formula
     @additives = Hash.new(0)
   end
 
-
 end
 
 class Recipe
@@ -17,6 +16,10 @@ class Recipe
     @flours    = Hash.new(0)
     @liquids   = Hash.new(0)
     @additives = Hash.new(0)
+  end
+
+  def bp item
+    item / @flours.each_value{|v| v}.inject(:+)
   end
 end
 
