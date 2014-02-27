@@ -24,6 +24,10 @@ describe Recipe do
     @recipe.bp(@recipe.liquids[:egg]).should eq 4
   end
 
+  it 'displays bakers percentage more easily' do
+    @recipe.bp(:egg).should eq 4
+  end
+
   it 'displays total weight' do
     @recipe.weight.should eq 168
   end
