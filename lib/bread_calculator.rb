@@ -12,10 +12,10 @@ end
 
 class Recipe
   attr_accessor :flours, :liquids, :additives
-  def initialize 
-    @flours    = Hash.new(0)
-    @liquids   = Hash.new(0)
-    @additives = Hash.new(0)
+  def initialize flours=Hash.new(0), liquids=Hash.new(0), additives=Hash.new(0)
+    @flours    = flours
+    @liquids   = liquids
+    @additives = additives
   end
 
   def bakers_100_percent
