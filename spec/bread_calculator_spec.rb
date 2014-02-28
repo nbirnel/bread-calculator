@@ -32,5 +32,10 @@ describe Recipe do
   it 'displays total weight' do
     @recipe.weight.should eq 168
   end
+
+  it 'pretty prints' do
+    pending
+    @recipe.pretty_print.should eq FIXME
+  end
 end
 
