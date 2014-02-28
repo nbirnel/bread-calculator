@@ -25,6 +25,7 @@ describe Recipe do
   end
 
   it 'displays bakers percentage more easily' do
+    pending
     @recipe.bp(:egg).should eq 4
   end
 
