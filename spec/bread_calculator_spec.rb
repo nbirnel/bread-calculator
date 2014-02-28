@@ -37,5 +37,9 @@ describe Recipe do
     pending
     @recipe.pretty_print.should eq FIXME
   end
+
+  it 'generates a formula' do
+    pending
+  end
 end
 
