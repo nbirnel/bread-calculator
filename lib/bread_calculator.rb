@@ -36,6 +36,8 @@ class Recipe
     total_flours + total_liquids + total_additives
   end
 
+  def formula
+  end
 
 end
 

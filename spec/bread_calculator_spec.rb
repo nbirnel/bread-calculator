@@ -40,6 +40,7 @@ describe Recipe do
 
   it 'generates a formula' do
     pending
+    @recipe.formula.should eq FIXME
   end
 end
 
