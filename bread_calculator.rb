@@ -18,13 +18,23 @@ class Recipe
     @additives = Hash.new(0)
   end
 
-  def percent_100
+  def bakers_100_percent
     @flours.map{|k,v| v}.inject(:+).to_f
   end
 
-  def bp item
-    item / percent_100 * 100
+  def ingredients
+    [@flours, @liquids, @additives]
   end
+
+  def bp item
+    item / bakers_100_percent * 100
+  end
+
+  def weight
+    self.ingredients.each.map{|k,v| v}.inject(:+).to_f
+  end
+
+
 end
 
 
