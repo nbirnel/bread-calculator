@@ -18,20 +18,22 @@ class Recipe
     @additives = additives
   end
 
-  def bakers_100_percent
-    @flours.map{|k,v| v}.inject(:+).to_f
+  [:flours, :liquids, :additives].each do |s|
+    define_method("total_#{s}") do
+      instance_variable_get("@#{s}").values.reduce(:+)
+    end
   end
 
-  def ingredients
-    [@flours, @liquids, @additives]
+  def bakers_100_percent
+    total_flours
   end
 
   def bp item
-    item / bakers_100_percent * 100
+    item / bakers_100_percent.to_f * 100
   end
 
   def weight
-    self.ingredients.each.map{|k,v| v}.inject(:+).to_f
+    total_flours + total_liquids + total_additives
   end
 
 
