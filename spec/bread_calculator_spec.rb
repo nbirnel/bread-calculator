@@ -1,4 +1,4 @@
-require  "#{File.dirname(__FILE__)}/bread_calculator"
+require  "#{File.dirname(__FILE__)}/../lib/bread_calculator"
 
 describe Recipe do
   before do
