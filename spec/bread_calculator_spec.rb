@@ -8,18 +8,9 @@ describe Recipe do
     @recipe.additives = {:dry_milk => 4, :raisins => 5}
   end
 
-  it 'can write and read liquids' do
-    @recipe.liquids[:water].should eq 55
-  end
-
-  it 'can write and read flours' do
+  it 'can read flours' do
     @recipe.flours[:all_purpose].should eq 70
   end
-
-  it 'can write and read additives' do
-    @recipe.additives[:dry_milk].should eq 4
-  end
-
   it 'displays bakers percentage' do
     @recipe.bp(@recipe.liquids[:egg]).should eq 4
   end
