@@ -38,6 +38,8 @@ class Recipe
   end
 
   def formula
+    #self.ingredients.map do |ing, qty|
+    #end
   end
 
 end
