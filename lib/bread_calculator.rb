@@ -4,13 +4,6 @@ class Formula        #maybe a formula is a subclass of recipe,
                      #where total_flours is forced to be 100?
   #                  #or is any given recipe a subclass of Formula?
   
-  attr_accessor :flours, :liquids, :additives
-  def initialize flours=Hash.new(0), liquids=Hash.new(0), additives=Hash.new(0)
-    @flours    = flours
-    @liquids   = liquids
-    @additives = additives
-  end
-
 end
 
 class Recipe
