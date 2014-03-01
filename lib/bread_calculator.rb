@@ -14,8 +14,9 @@ class Formula        #maybe a formula is a subclass of recipe,
 end
 
 class Recipe
-  attr_accessor :flours, :liquids, :additives
-  def initialize flours=Hash.new(0), liquids=Hash.new(0), additives=Hash.new(0)
+  attr_accessor :units, :flours, :liquids, :additives
+  def initialize units = 'grams', flours=Hash.new(0), liquids=Hash.new(0), additives=Hash.new(0)
+    @units     = units
     @flours    = flours
     @liquids   = liquids
     @additives = additives
