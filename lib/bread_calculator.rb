@@ -35,6 +35,10 @@ class Recipe
     item / bakers_100_percent.to_f * 100
   end
 
+  def ingredients
+    @flours.merge @liquids.merge @additives  
+  end
+
   def weight
     total_flours + total_liquids + total_additives
   end

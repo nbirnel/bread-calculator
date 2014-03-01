@@ -24,6 +24,17 @@ describe Recipe do
     @recipe.weight.should eq 168
   end
 
+  it 'lists all ingredients and quantities' do
+    @recipe.ingredients.should == {
+      :whole_wheat => 30,
+      :all_purpose => 70,
+      :water => 55,
+      :egg => 4,
+      :dry_milk => 4,
+      :raisins => 5
+    }
+  end
+
   it 'pretty prints' do
     pending
     @recipe.pretty_print.should eq FIXME
