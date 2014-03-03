@@ -34,9 +34,12 @@ class Recipe
     @ingredients = self.ingredients
   end
 
+  #FIXME make this a method_missing so we can add new types on the fly
   [:flours, :liquids, :additives].each do |s|
     define_method("total_#{s}") do
-      instance_variable_get("@#{s}").values.reduce(:+)
+      instance_variable_get("@ingredients").select do |i|
+        i.bp_type == s
+      end.map{|i| i.quantity}.reduce(:+)
     end
   end
 
@@ -56,10 +59,6 @@ class Recipe
       end
     end
     a
-  end
-
-  def total_flours
-    self.ingredients.select{|i| i.bp_type == :flour}.map{|i| i.quantity}.reduce(:+)
   end
 
   def weight

@@ -42,8 +42,8 @@ end
 
 describe Recipe do
   before do
-    @ww = Ingredient.new "whole wheat flour", :quantity => 300, :units => 'grams', :bp_type =>:flour
-    @ap = Ingredient.new "all purpose flour", :quantity => 700, :units => 'grams', :bp_type =>:flour
+    @ww = Ingredient.new "whole wheat flour", :quantity => 300, :units => 'grams', :bp_type =>:flours
+    @ap = Ingredient.new "all purpose flour", :quantity => 700, :units => 'grams', :bp_type =>:flours
     @water = Ingredient.new "water", :quantity => 550, :units => 'grams', :bp_type =>:liquids
     @egg = Ingredient.new "egg", :quantity => 40, :units => 'grams', :bp_type =>:liquids
     @milk = Ingredient.new "milk powder", :quantity => 40, :units => 'grams', :bp_type =>:additives
@@ -65,8 +65,8 @@ describe Recipe do
     @recipe.weight.should eq 1660
   end
 
-  it 'displays total flours' do
-    @recipe.total_flours.should eq 1000
+  it 'displays total liquids' do
+    @recipe.total_liquids.should eq 550
   end
 
   it 'pretty prints' do
