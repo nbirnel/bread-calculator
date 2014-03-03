@@ -27,6 +27,7 @@ class Step
 end
 
 class Recipe
+  attr_reader :steps, :metadata
   def initialize metadata, steps
     @metadata = metadata
     @steps    = steps
@@ -47,15 +48,21 @@ class Recipe
   end
 
   def ingredients
-    @flours.merge @liquids.merge @additives  
+    a = Array.new
+    self.steps.each do |step|
+      step.ingredients.each do |ing|
+        a << ing
+      end
+    end
+    a
   end
 
   def weight
-    total_flours + total_liquids + total_additives
+    self.ingredients.map{|i| i.quantity}.reduce(:+)
   end
 
   def formula
-    formula = Hash.new
+
     self.ingredients.each do |ing, quantity|
       formula[ing] = self.bp quantity
     end

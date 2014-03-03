@@ -1,5 +1,7 @@
 require  "#{File.dirname(__FILE__)}/../lib/bread_calculator"
 
+
+
 describe Ingredient do
   before do
     @ww = Ingredient.new "whole wheat flour", :quantity => 300, :units => 'grams', :bp_type =>:flour
@@ -18,6 +20,13 @@ end
 
 describe Step do
   before do 
+    @ww = Ingredient.new "whole wheat flour", :quantity => 300, :units => 'grams', :bp_type =>:flour
+    @ap = Ingredient.new "all purpose flour", :quantity => 700, :units => 'grams', :bp_type =>:flour
+    @water = Ingredient.new "water", :quantity => 550, :units => 'grams', :bp_type =>:liquids
+    @egg = Ingredient.new "egg", :quantity => 40, :units => 'grams', :bp_type =>:liquids
+    @milk = Ingredient.new "milk powder", :quantity => 40, :units => 'grams', :bp_type =>:additives
+    @raisins = Ingredient.new "raisins", :quantity => 50, :units => 'grams', :bp_type =>:additives
+    @yeast = Ingredient.new "yeast", :quantity => 20, :units => 'grams', :bp_type =>:additives
     @proof = Step.new 'Rehydrate', [@yeast]
     @wet   = Step.new 'in', [@water]
     @dry   = Step.new 'Mix together:', [@ww, @ap, @milk], 'in  a large bowl'
@@ -33,24 +42,27 @@ end
 
 describe Recipe do
   before do
+    @ww = Ingredient.new "whole wheat flour", :quantity => 300, :units => 'grams', :bp_type =>:flour
+    @ap = Ingredient.new "all purpose flour", :quantity => 700, :units => 'grams', :bp_type =>:flour
+    @water = Ingredient.new "water", :quantity => 550, :units => 'grams', :bp_type =>:liquids
+    @egg = Ingredient.new "egg", :quantity => 40, :units => 'grams', :bp_type =>:liquids
+    @milk = Ingredient.new "milk powder", :quantity => 40, :units => 'grams', :bp_type =>:additives
+    @raisins = Ingredient.new "raisins", :quantity => 50, :units => 'grams', :bp_type =>:additives
+    @yeast = Ingredient.new "yeast", :quantity => 20, :units => 'grams', :bp_type =>:additives
+    @proof = Step.new 'Rehydrate', [@yeast]
+    @wet   = Step.new 'in', [@water]
+    @dry   = Step.new 'Mix together:', [@ww, @ap, @milk], 'in  a large bowl'
+    @mix   = Step.new 'Combine wet and dry ingredients with', [@raisins]
+    @bake  = Step.new 'Form a loaf, rise for 2 hours, Bake at 375° for 45 minutes.'
     @recipe = Recipe.new 'metadata', [@proof, @wet, @dry, @mix, @bake]
   end
 
-  it 'displays total weight' do
-    pending
-    @recipe.weight.should eq 1680
+  it 'lists all ingredients and quantities' do
+    @recipe.ingredients.length.should eq 6
   end
 
-  it 'lists all ingredients and quantities' do
-    pending
-    @recipe.ingredients.should == {
-      :whole_wheat => 30,
-      :all_purpose => 70,
-      :water => 55,
-      :egg => 4,
-      :dry_milk => 4,
-      :raisins => 5
-    }
+  it 'displays total weight' do
+    @recipe.weight.should eq 1660
   end
 
   it 'pretty prints' do
