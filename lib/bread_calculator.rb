@@ -1,11 +1,5 @@
 #!/usr/bin/env ruby
 
-class Formula        #maybe a formula is a subclass of recipe,
-                     #where total_flours is forced to be 100?
-  #                  #or is any given recipe a subclass of Formula?
-  
-end
-
 class Ingredient
   attr_accessor :quantity, :units, :name, :bp_type
   def initialize name, extra_args={}
