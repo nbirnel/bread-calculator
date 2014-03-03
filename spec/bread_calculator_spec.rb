@@ -2,12 +2,11 @@ require  "#{File.dirname(__FILE__)}/../lib/bread_calculator"
 
 describe Ingredient do
   before do
-    @ingredient = Ingredient.new 
-    #{:quantity => 100, :units => 'grams', :name =>'bread flour', :bp_type =>:flour}
+    @ww = Ingredient.new "bread flour", :quantity => 100, :units => 'grams', :bp_type =>:flour
   end
   
   it 'has a quantity' do
-
+    @ww.quantity = 100
   end
 end
 
