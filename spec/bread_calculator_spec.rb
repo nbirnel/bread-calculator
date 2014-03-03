@@ -10,6 +10,12 @@ describe Ingredient do
   end
 end
 
+describe Step do
+  before do 
+    @mix = Step.new 'Mix together:', @ww, 'in  a large bowl'
+  end
+end
+
 describe Recipe do
   before do
     @recipe = Recipe.new
