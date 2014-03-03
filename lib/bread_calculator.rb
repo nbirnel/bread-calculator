@@ -9,6 +9,7 @@ end
 class Ingredient
   attr_accessor :quantity, :units, :name, :bp_type
   def initialize name, extra_args={}
+    @units = 'grams'
     @name = name
     extra_args.each do |k,v| 
       instance_variable_set("@#{k}", v)
