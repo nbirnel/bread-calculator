@@ -41,8 +41,15 @@ describe Recipe do
   end
 
   it 'generates a formula' do
-    pending
-    @recipe.formula.should eq FIXME
+    @recipe.formula.should == {
+      :whole_wheat=>30.0,
+      :all_purpose=>70.0,
+      :water=>55.00000000000001,
+      :egg=>4.0,
+      :dry_milk=>4.0,
+      :raisins=>5.0
+    }
   end
+
 end
 
