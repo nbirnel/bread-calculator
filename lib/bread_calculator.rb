@@ -16,6 +16,15 @@ class Ingredient
   end
 end
 
+class Step
+  attr_reader :technique, :ingredients, :technique_2
+  def initialize technique, ingredients = [], technique_2 = nil
+    @technique   = technique
+    @ingredients = ingredients
+    @technique_2 = technique_2
+  end
+end
+
 class Recipe
   attr_accessor :units, :flours, :liquids, :additives
   def initialize units = 'grams', flours=Hash.new(0), liquids=Hash.new(0), additives=Hash.new(0)

@@ -12,8 +12,13 @@ end
 
 describe Step do
   before do 
-    @mix = Step.new 'Mix together:', @ww, 'in  a large bowl'
+    @mix = Step.new 'Mix together:', [@ww], 'in  a large bowl'
   end
+
+  it 'has a technique' do
+    @mix.technique.should eq 'Mix together:'
+  end
+
 end
 
 describe Recipe do
