@@ -4,13 +4,13 @@ require  "#{File.dirname(__FILE__)}/../lib/bread_calculator"
 
 describe Ingredient do
   before do
-    @ww = Ingredient.new "whole wheat flour", :quantity => 300, :units => 'grams', :bp_type =>:flour
-    @ap = Ingredient.new "all purpose flour", :quantity => 700, :units => 'grams', :bp_type =>:flour
-    @water = Ingredient.new "water", :quantity => 550, :units => 'grams', :bp_type =>:liquids
-    @egg = Ingredient.new "egg", :quantity => 40, :units => 'grams', :bp_type =>:liquids
-    @milk = Ingredient.new "milk powder", :quantity => 40, :units => 'grams', :bp_type =>:additives
-    @raisins = Ingredient.new "raisins", :quantity => 50, :units => 'grams', :bp_type =>:additives
-    @yeast = Ingredient.new "yeast", :quantity => 20, :units => 'grams', :bp_type =>:additives
+    @ww = Ingredient.new "whole wheat flour", :quantity => 300, :units => 'grams', :type =>:flour
+    @ap = Ingredient.new "all purpose flour", :quantity => 700, :units => 'grams', :type =>:flour
+    @water = Ingredient.new "water", :quantity => 550, :units => 'grams', :type =>:liquids
+    @egg = Ingredient.new "egg", :quantity => 40, :units => 'grams', :type =>:liquids
+    @milk = Ingredient.new "milk powder", :quantity => 40, :units => 'grams', :type =>:additives
+    @raisins = Ingredient.new "raisins", :quantity => 50, :units => 'grams', :type =>:additives
+    @yeast = Ingredient.new "yeast", :quantity => 20, :units => 'grams', :type =>:additives
   end
   
   it 'has a quantity' do
@@ -20,13 +20,13 @@ end
 
 describe Step do
   before do 
-    @ww = Ingredient.new "whole wheat flour", :quantity => 300, :units => 'grams', :bp_type =>:flour
-    @ap = Ingredient.new "all purpose flour", :quantity => 700, :units => 'grams', :bp_type =>:flour
-    @water = Ingredient.new "water", :quantity => 550, :units => 'grams', :bp_type =>:liquids
-    @egg = Ingredient.new "egg", :quantity => 40, :units => 'grams', :bp_type =>:liquids
-    @milk = Ingredient.new "milk powder", :quantity => 40, :units => 'grams', :bp_type =>:additives
-    @raisins = Ingredient.new "raisins", :quantity => 50, :units => 'grams', :bp_type =>:additives
-    @yeast = Ingredient.new "yeast", :quantity => 20, :units => 'grams', :bp_type =>:additives
+    @ww = Ingredient.new "whole wheat flour", :quantity => 300, :units => 'grams', :type =>:flour
+    @ap = Ingredient.new "all purpose flour", :quantity => 700, :units => 'grams', :type =>:flour
+    @water = Ingredient.new "water", :quantity => 550, :units => 'grams', :type =>:liquids
+    @egg = Ingredient.new "egg", :quantity => 40, :units => 'grams', :type =>:liquids
+    @milk = Ingredient.new "milk powder", :quantity => 40, :units => 'grams', :type =>:additives
+    @raisins = Ingredient.new "raisins", :quantity => 50, :units => 'grams', :type =>:additives
+    @yeast = Ingredient.new "yeast", :quantity => 20, :units => 'grams', :type =>:additives
     @proof = Step.new 'Rehydrate', [@yeast]
     @wet   = Step.new 'in', [@water]
     @dry   = Step.new 'Mix together:', [@ww, @ap, @milk], 'in  a large bowl'
@@ -42,13 +42,13 @@ end
 
 describe Recipe do
   before do
-    @ww = Ingredient.new "whole wheat flour", :quantity => 300, :units => 'grams', :bp_type =>:flours
-    @ap = Ingredient.new "all purpose flour", :quantity => 700, :units => 'grams', :bp_type =>:flours
-    @water = Ingredient.new "water", :quantity => 550, :units => 'grams', :bp_type =>:liquids
-    @egg = Ingredient.new "egg", :quantity => 40, :units => 'grams', :bp_type =>:liquids
-    @milk = Ingredient.new "milk powder", :quantity => 40, :units => 'grams', :bp_type =>:additives
-    @raisins = Ingredient.new "raisins", :quantity => 50, :units => 'grams', :bp_type =>:additives
-    @yeast = Ingredient.new "yeast", :quantity => 20, :units => 'grams', :bp_type =>:additives
+    @ww = Ingredient.new "whole wheat flour", :quantity => 300, :units => 'grams', :type =>:flours
+    @ap = Ingredient.new "all purpose flour", :quantity => 700, :units => 'grams', :type =>:flours
+    @water = Ingredient.new "water", :quantity => 550, :units => 'grams', :type =>:liquids
+    @egg = Ingredient.new "egg", :quantity => 40, :units => 'grams', :type =>:liquids
+    @milk = Ingredient.new "milk powder", :quantity => 40, :units => 'grams', :type =>:additives
+    @raisins = Ingredient.new "raisins", :quantity => 50, :units => 'grams', :type =>:additives
+    @yeast = Ingredient.new "yeast", :quantity => 20, :units => 'grams', :type =>:additives
     @proof = Step.new 'Rehydrate', [@yeast]
     @wet   = Step.new 'in', [@water]
     @dry   = Step.new 'Mix together:', [@ww, @ap, @milk], 'in  a large bowl'
