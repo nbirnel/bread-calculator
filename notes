@@ -23,3 +23,14 @@ We want to:
     2  g salt        = 102 g total
   make a recipe / formula from an interactive running weight target session
 
+recipe-as-methods branch:
+recipe is a hash: metadata, methods
+  metadata is an extensible hash - :name, prep time, notes, history,
+   serves, makes, attibution, etcc
+  methods is a list of hashes, each composed of
+   method, ingredients.
+   method is a freeform string (any formatting can be done elsewhere)
+   ingredients is a list of ingredients
+     each ingredient is a hash - 
+       qty, unit, name, bp_type(flour, liquid, additive)
+f
