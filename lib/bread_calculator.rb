@@ -27,12 +27,9 @@ class Step
 end
 
 class Recipe
-  attr_accessor :units, :flours, :liquids, :additives
-  def initialize units = 'grams', flours=Hash.new(0), liquids=Hash.new(0), additives=Hash.new(0)
-    @units     = units
-    @flours    = flours
-    @liquids   = liquids
-    @additives = additives
+  def initialize metadata, steps
+    @metadata = metadata
+    @steps    = steps
   end
 
   [:flours, :liquids, :additives].each do |s|
