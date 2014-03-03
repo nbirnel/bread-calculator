@@ -38,10 +38,12 @@ class Recipe
   end
 
   def formula
-    #self.ingredients.map do |ing, qty|
-    #end
+    formula = Hash.new
+    self.ingredients.each do |ing, qty|
+      formula[ing] = self.bp qty
+    end
+    formula
   end
 
 end
-
 
