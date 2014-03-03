@@ -31,6 +31,7 @@ class Recipe
   def initialize metadata, steps
     @metadata = metadata
     @steps    = steps
+    @ingredients = self.ingredients
   end
 
   [:flours, :liquids, :additives].each do |s|
@@ -57,16 +58,20 @@ class Recipe
     a
   end
 
+  def total_flours
+    self.ingredients.select{|i| i.bp_type == :flour}.map{|i| i.quantity}.reduce(:+)
+  end
+
   def weight
     self.ingredients.map{|i| i.quantity}.reduce(:+)
   end
 
   def formula
-
-    self.ingredients.each do |ing, quantity|
-      formula[ing] = self.bp quantity
+    h = Hash.new
+    self.ingredients.map do |i|
+      h[i.name] = self.bp i.quantity
     end
-    formula
+    h
   end
 
 end

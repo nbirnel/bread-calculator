@@ -65,13 +65,16 @@ describe Recipe do
     @recipe.weight.should eq 1660
   end
 
+  it 'displays total flours' do
+    @recipe.total_flours.should eq 1000
+  end
+
   it 'pretty prints' do
     pending
     @recipe.pretty_print.should eq FIXME
   end
 
   it 'generates a formula' do
-    pending
     @recipe.formula.should == {
       :whole_wheat=>0.3,
       :all_purpose=>0.7,
