@@ -3,8 +3,8 @@ require  "#{File.dirname(__FILE__)}/../lib/bread_calculator"
 describe Recipe do
   before do
     @recipe = Recipe.new
-    @recipe.liquids = {:water => 55, :egg => 4}
     @recipe.flours = {:whole_wheat => 30, :all_purpose => 70}
+    @recipe.liquids = {:water => 55, :egg => 4}
     @recipe.additives = {:dry_milk => 4, :raisins => 5}
   end
 
