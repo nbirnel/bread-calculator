@@ -26,7 +26,7 @@ class Recipe
   end
 
   def bp item
-    item / bakers_100_percent.to_f * 100
+    item / bakers_100_percent.to_f
   end
 
   def ingredients

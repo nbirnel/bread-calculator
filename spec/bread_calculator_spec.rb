@@ -12,12 +12,12 @@ describe Recipe do
     @recipe.flours[:all_purpose].should eq 70
   end
   it 'displays bakers percentage' do
-    @recipe.bp(@recipe.liquids[:egg]).should eq 4
+    @recipe.bp(@recipe.liquids[:egg]).should eq 0.04
   end
 
   it 'displays bakers percentage more easily' do
     pending
-    @recipe.bp(:egg).should eq 4
+    @recipe.bp(:egg).should eq 0.04
   end
 
   it 'displays total weight' do
@@ -42,12 +42,12 @@ describe Recipe do
 
   it 'generates a formula' do
     @recipe.formula.should == {
-      :whole_wheat=>30.0,
-      :all_purpose=>70.0,
-      :water=>55.00000000000001,
-      :egg=>4.0,
-      :dry_milk=>4.0,
-      :raisins=>5.0
+      :whole_wheat=>0.3,
+      :all_purpose=>0.7,
+      :water=>0.55,
+      :egg=>0.04,
+      :dry_milk=>0.04,
+      :raisins=>0.05
     }
   end
 
