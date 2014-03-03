@@ -7,6 +7,13 @@ class Formula        #maybe a formula is a subclass of recipe,
 end
 
 class Ingredient
+  attr_accessor :quantity, :units, :name, :bp_type
+  def initialize name, extra_args={}
+    @name = name
+    extra_args.each do |k,v| 
+      instance_variable_set("@#{k}", v)
+    end
+  end
 end
 
 class Recipe
@@ -42,8 +49,8 @@ class Recipe
 
   def formula
     formula = Hash.new
-    self.ingredients.each do |ing, qty|
-      formula[ing] = self.bp qty
+    self.ingredients.each do |ing, quantity|
+      formula[ing] = self.bp quantity
     end
     formula
   end
