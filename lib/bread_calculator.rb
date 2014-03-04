@@ -52,9 +52,7 @@ class Recipe
     end
   end
 
-  def bakers_percent_100
-    total_flours
-  end
+  alias_method 'bakers_percent_100', 'total_flours'
 
   def bakers_percent item
     item / bakers_percent_100.to_f
