@@ -23,6 +23,8 @@ end
 
 class Recipe
   attr_reader :steps, :metadata
+  #metadata is an extensible hash - :name, prep time, notes, history,
+  # serves, makes, attibution, etcc
   def initialize metadata, steps
     @metadata = metadata
     @steps    = steps
@@ -47,9 +49,9 @@ class Recipe
   #RENÉE - 'end.' is weird or no?
   [:flours, :liquids, :additives].each do |s|
     define_method("total_#{s}") do
-      instance_variable_get("@ingredients").select do |i|
-        i.type == s
-      end.map{|i| i.quantity}.reduce(:+)
+      instance_variable_get("@ingredients").select{|i| i.type == s}.map do |i|
+        i.quantity
+      end.reduce(:+)
     end
   end
 

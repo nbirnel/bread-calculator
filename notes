@@ -29,6 +29,7 @@ recipe is a hash: metadata, methods
    serves, makes, attibution, etcc
   methods is a list of hashes, each composed of
    method, ingredients, optional 2nd method.
+   
    method is a freeform string (any formatting can be done elsewhere)
    ingredients is a list of ingredients
      each ingredient is a hash - 
