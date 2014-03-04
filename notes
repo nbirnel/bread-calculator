@@ -34,4 +34,19 @@ recipe is a hash: metadata, methods
    ingredients is a list of ingredients
      each ingredient is a hash - 
        qty, unit, name, bp_type(flour, liquid, additive)
-f
+
+converting a text recipe to a Recipe:
+freeform prelude until /^-*/
+a blank line starts a new Step
+an indent means a new Ingredient
+ingredient type is inferred by verbiage:
+  flour: flour
+  liquid: liquid
+  water: liquid
+  egg: liquid
+  mashed: liquid
+  milk : liquid
+  dry: additive
+  .*: additive
+
+
