@@ -44,6 +44,7 @@ class Recipe
   end
 
   #FIXME make this a method_missing so we can add new types on the fly
+  #RENÉE - 'end.' is weird or no?
   [:flours, :liquids, :additives].each do |s|
     define_method("total_#{s}") do
       instance_variable_get("@ingredients").select do |i|
