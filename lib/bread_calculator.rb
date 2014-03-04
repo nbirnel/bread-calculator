@@ -27,8 +27,8 @@ class Step
   attr_reader :techniques, :ingredients
 
   ##
-  # Creates a new step with the the array +techniques+, which consists of 
-  # ministep strings, and Ingredients.
+  # Creates a new step with the the optional array +techniques+,
+  # which consists of  ministep strings, and +Ingredients+.
   #
   # This is intended to read something like:
   # <tt>"Mix:", @flour, @water, "thoroughly."</tt>
@@ -41,6 +41,8 @@ class Step
     self.techniques = args
   end
 
+  ##
+  # Sets +Step.techniques+ to +args+, and defines +Step.ingredients+
   def techniques= args
     @techniques = args
     @ingredients = args.select{|arg| arg.is_a? Ingredient}
