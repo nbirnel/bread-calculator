@@ -1,7 +1,5 @@
 require  "#{File.dirname(__FILE__)}/../lib/bread_calculator"
 
-
-
 describe Ingredient do
   before do
     @ww = Ingredient.new "whole wheat flour", :quantity => 300, :units => 'grams', :type =>:flour
