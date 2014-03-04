@@ -48,8 +48,8 @@ describe 'bread_calculator' do
       @recipe.pretty_print.should eq FIXME
     end
 
-    it 'generates a formula' do
-      @recipe.formula.should == {
+    it 'generates a baker\'s percentage formula' do
+      @recipe.bakers_percent_formula.should == {
         "yeast"=>0.02,
         "water"=>0.55,
         "egg"=>0.04,

@@ -107,7 +107,7 @@ class Recipe
   ##
   # Return a unit-less formula for the recipe in baker's percentages
   
-  def formula
+  def bakers_percent_formula
     h = Hash.new
     self.ingredients.map do |i|
       h[i.name] = self.bakers_percent i.quantity
