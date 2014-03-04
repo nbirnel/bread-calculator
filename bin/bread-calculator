@@ -14,23 +14,24 @@ end; }
 @steps[0] = Step.new
 
 def preprocess line
-  regex = /^\s+((?<qty>[0-9.]+\s*)(?<units>g)?\s+)?(?<item>.*)/
-  info = Hash.new
-  if regex =~ line 
+  ing_regex = /^\s+((?<qty>[0-9.]+\s*)(?<units>g)?\s+)?(?<item>.*)/
+  h = Hash.new
+  if ing_regex =~ line 
     match = Regexp.last_match
-    info[:quantity] = match[:qty].strip.to_f
-    info[:units]    = match[:units]
-    name            = match[:item]
-#matches flour ->flour
-#matches liquid ->liquid
-#matches water ->liquid
-#matches egg ->liquid
-#matches mashed ->liquid
-#matches milk  ->liquid
-#matches dry   -> additive
-# no  match, additive
+    h[:quantity] = match[:qty].strip.to_f
+    h[:units]    = match[:units]
+    name         = match[:item]
 
-    ing = Ingredient.new name, info
+    h[:type] = :additives #if it doesn't match anything else
+    h[:type] = :flours    if name =~ /flour/
+    h[:type] = :liquids   if name =~ /liquid/
+    h[:type] = :liquids   if name =~ /water/
+    h[:type] = :liquids   if name =~ /egg/
+    h[:type] = :liquids   if name =~ /mashed/
+    h[:type] = :liquids   if name =~ /milk/
+    h[:type] = :additives if name =~ /dry/
+
+    ing = Ingredient.new name, h
   else
     line.strip
   end
@@ -38,7 +39,6 @@ end
 
 def close_step
   @steps[@i].techniques = @args
-  puts @steps[@i].inspect
 end
 
 def new_step
@@ -63,7 +63,6 @@ end
 close_step
 # because we made a spurious one to begin with
 @steps.shift
-puts @prelude
 metadata = {
   :name => 'foo',
   :notes => @prelude,
