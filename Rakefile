@@ -25,7 +25,7 @@ task :test => :spec
 task :spec 
 
 file 'doc' => LIB  do
-  `rdoc lib/bread_calculator.rb`        #FIXME shell out not cool
+  `rdoc lib/`        #FIXME shell out not cool
 end
 
 task :gem => GEM
