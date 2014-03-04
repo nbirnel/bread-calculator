@@ -52,18 +52,18 @@ class Recipe
     end
   end
 
-  def bakers_100_percent
+  def bakers_percent_100
     total_flours
   end
 
-  def bp item
-    item / bakers_100_percent.to_f
+  def bakers_percent item
+    item / bakers_percent_100.to_f
   end
 
   def formula
     h = Hash.new
     self.ingredients.map do |i|
-      h[i.name] = self.bp i.quantity
+      h[i.name] = self.bakers_percent i.quantity
     end
     h
   end
