@@ -9,13 +9,65 @@ loop { case ARGV[0]
   else break
 end; }
 
-in_steps = nil
-prelude = ''
+@i = 0
+@args = @steps = []
+@steps[0] = Step.new
+
+def preprocess line
+  regex = /^\s+((?<qty>[0-9.]+\s*)(?<units>g)?\s+)?(?<item>.*)/
+  info = Hash.new
+  if regex =~ line 
+    match = Regexp.last_match
+    info[:quantity] = match[:qty].strip.to_f
+    info[:units]    = match[:units]
+    name            = match[:item]
+#matches flour ->flour
+#matches liquid ->liquid
+#matches water ->liquid
+#matches egg ->liquid
+#matches mashed ->liquid
+#matches milk  ->liquid
+#matches dry   -> additive
+# no  match, additive
+
+    ing = Ingredient.new name, info
+  else
+    line.strip
+  end
+end
+
+def close_step
+  @steps[@i].techniques = @args
+  puts @steps[@i].inspect
+end
+
+def new_step
+  @in_prelude = false
+  close_step
+
+  @args = []
+  @i += 1
+  @steps[@i] = Step.new
+end
+
+@in_prelude = true
+@prelude = ''
 
 while line = gets do
-  in_steps = 1 if line =~ /^-/
-  prelude << line && next unless in_steps
+  new_step         && next if line =~ /(^-)|(^\s*$)/
+  @prelude << line && next if @in_prelude
 
+  @args << preprocess(line.chomp)
 end   
 
+close_step
+# because we made a spurious one to begin with
+@steps.shift
+puts @prelude
+metadata = {
+  :name => 'foo',
+  :notes => @prelude,
+}
 
+r = Recipe.new metadata, @steps
+puts r.bakers_percent_formula
