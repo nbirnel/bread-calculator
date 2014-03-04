@@ -24,23 +24,22 @@ end
 # This class represents a discrete step in a Recipe.
 
 class Step
-  attr_reader :technique, :ingredients, :technique_2
+  attr_reader :techniques, :ingredients
 
   ##
-  # Creates a new step with the string +technique+, and an optional array of
-  # Ingredients +ingredients+, and an optional second string +technique_2+
+  # Creates a new step with the the array +techniques+, which consists of 
+  # ministep strings, and Ingredients.
   #
   # This is intended to read something like:
-  # <tt>"Mix:", [@flour, @water], "thoroughly."</tt>
+  # <tt>"Mix:", @flour, @water, "thoroughly."</tt>
   #
   # or:
   #
   # <tt>"Serve forth."</tt>
   
-  def initialize technique, ingredients = [], technique_2 = nil
-    @technique   = technique
-    @ingredients = ingredients
-    @technique_2 = technique_2
+  def initialize *args
+    @techniques  = args
+    @ingredients = args.select{|arg| arg.is_a? Ingredient}
   end
 end
 

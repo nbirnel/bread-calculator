@@ -9,10 +9,10 @@ describe 'bread_calculator' do
     @milk    = Ingredient.new "dry milk", :quantity => 40, :units => 'grams', :type=>:additives
     @raisins = Ingredient.new "raisins", :quantity => 50, :units => 'grams', :type=>:additives
     @yeast   = Ingredient.new "yeast", :quantity => 20, :units => 'grams', :type=>:additives
-    @proof   = Step.new 'Rehydrate', [@yeast]
-    @wet     = Step.new 'in', [@water, @egg]
-    @dry     = Step.new 'Mix together:', [@ww, @ap, @milk], 'in  a large bowl'
-    @mix     = Step.new 'Combine wet and dry ingredients with', [@raisins]
+    @proof   = Step.new 'Rehydrate', @yeast
+    @wet     = Step.new 'in', @water, @egg
+    @dry     = Step.new 'Mix together:', @ww, @ap, @milk, 'in  a large bowl'
+    @mix     = Step.new 'Combine wet and dry ingredients with', @raisins
     @bake    = Step.new 'Form a loaf, rise for 2 hours, Bake at 375° for 45 minutes.'
     @recipe  = Recipe.new 'metadata', [@proof, @wet, @dry, @mix, @bake]
   end
@@ -24,10 +24,6 @@ describe 'bread_calculator' do
   end
 
   describe Step do
-    it 'has a technique' do
-      @dry.technique.should eq 'Mix together:'
-    end
-
   end
 
   describe Recipe do
