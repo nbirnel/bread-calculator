@@ -1,5 +1,3 @@
-#!/usr/bin/env ruby
-
 class Ingredient
   attr_accessor :quantity, :units, :name, :type
   def initialize name, extra_args={}
