@@ -24,6 +24,9 @@ describe 'bread_calculator' do
   end
 
   describe Step do
+    it 'can be called without arguments' do
+      Step.new
+    end
   end
 
   describe Recipe do

@@ -38,7 +38,11 @@ class Step
   # <tt>"Serve forth."</tt>
   
   def initialize *args
-    @techniques  = args
+    self.techniques = args
+  end
+
+  def techniques= args
+    @techniques = args
     @ingredients = args.select{|arg| arg.is_a? Ingredient}
   end
 end
