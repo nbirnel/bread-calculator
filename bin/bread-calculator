@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+
+require 'bread_calculator'
+
+# Boilerplate for adding flags.
+loop { case ARGV[0]
+  when /--/ then ARGV.shift; break
+  when /^-/ then usage("Unknown option: #{ARGV[0].inspect}")
+  else break
+end; }
+
+in_steps = nil
+prelude = ''
+
+while line = gets do
+  in_steps = 1 if line =~ /^-/
+  prelude << line && next unless in_steps
+
+end   
+
+
