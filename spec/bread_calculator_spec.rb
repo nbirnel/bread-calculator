@@ -60,7 +60,8 @@ describe 'bread_calculator' do
     end
 
     it 'scales' do
-      @recipe.scale(1.5).should be_instance_of Recipe
+      @scaled = @recipe.scale_by(2)
+      ( @scaled.weight == @recipe.weight * 2.0 ).should be_true
     end
 
 

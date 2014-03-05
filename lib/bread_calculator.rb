@@ -23,11 +23,11 @@ class Ingredient
   ##
   # creates a new Ingredient, with +quantity+ scaled by +factor+
   
-  def scale factor
+  def scale_by ratio
     scaled = Hash.new
     self.info.each do |k, v|
       scaled[k] = v
-      scaled[k] = v*factor  if k == :quantity
+      scaled[k] = v*ratio  if k == :quantity
     end
     Ingredient.new(self.name, scaled)
   end
@@ -51,7 +51,7 @@ class Step
   # <tt>"Serve forth."</tt>
   
   def initialize *args
-    self.techniques = args
+    self.techniques = args.flatten
   end
 
   ##
@@ -122,20 +122,23 @@ class Recipe
     weight / bakers_percent_100.to_f
   end
 
-  ##
-  # Return a unit-less formula for the recipe in baker's percentages
-  
-  def scale by
+  ## 
+  # Scale a recipe by +ratio+
+
+  def scale_by ratio
     new_steps = self.steps.map do |s| 
-      args =  s.techniques.map do |t| 
-        t.is_a?(Ingredient) ? t.scale(by) : t
+      step_args =  s.techniques.map do |t| 
+        t.is_a?(Ingredient) ? t.scale_by(ratio) : t
       end
-      Step.new args[0]
+      Step.new step_args
     end
 
     Recipe.new self.metadata, new_steps
   end
 
+  ##
+  # Return a unit-less formula for the recipe in baker's percentages
+  
   def bakers_percent_formula
     h = Hash.new
     self.ingredients.map do |i|
