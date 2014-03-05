@@ -68,6 +68,10 @@ describe 'bread_calculator' do
       ( @scaled.weight == @recipe.weight * 2.0 ).should be_true
     end
 
+    it 'generates a baker\'s percentage formula' do
+      @recipe.bakers_percent_formula.is_a?(Recipe).should be_true
+      @recipe.bakers_percent_formula.total_flours.should eq 100.0
+    end
 
   end
 

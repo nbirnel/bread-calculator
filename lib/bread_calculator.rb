@@ -122,6 +122,14 @@ class Recipe
     weight / bakers_percent_100.to_f
   end
 
+  ##
+  # Returns a Formula
+  
+  def bakers_percent_formula
+    ratio = 100.0 / self.total_flours
+    self.scale_by ratio
+  end
+  
   ## 
   # Returns new Recipe scaled by +ratio+
 
