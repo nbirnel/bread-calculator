@@ -139,8 +139,12 @@ class Recipe
   ##
   # Return a unit-less formula for the recipe in baker's percentages
   
-  def bakers_percent_formula
+  def bakers_percent_summary
     h = Hash.new
+    [:flours, :liquids, :additives].each do |s|
+      h["total_#{s}"] = self.bakers_percent eval("self.total_#{s}")
+    end
+    
     self.ingredients.map do |i|
       h[i.name] = self.bakers_percent i.quantity
     end

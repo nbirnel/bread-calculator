@@ -70,4 +70,4 @@ metadata = {
 }
 
 r = Recipe.new metadata, @steps
-pp r.bakers_percent_formula
+pp r.bakers_percent_summary
