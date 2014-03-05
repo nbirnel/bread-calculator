@@ -20,7 +20,7 @@ def preprocess line
     match = Regexp.last_match
     h[:quantity] = match[:qty].strip.to_f
     h[:units]    = match[:units]
-    name         = match[:item]
+    name         = match[:item].strip
 
     h[:type] = :additives #if it doesn't match anything else
     h[:type] = :flours    if name =~ /flour/
