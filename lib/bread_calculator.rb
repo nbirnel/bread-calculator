@@ -19,6 +19,18 @@ class Ingredient
       instance_variable_set("@#{k}", v)
     end
   end
+
+  ##
+  # creates a new Ingredient, with +quantity+ scaled by +factor+
+  
+  def scale factor
+    scaled = Hash.new
+    self.info.each do |k, v|
+      scaled[k] = v
+      scaled[k] = v*factor  if k == :quantity
+    end
+    Ingredient.new(self.name, scaled)
+  end
 end
 
 ## 
@@ -113,14 +125,15 @@ class Recipe
   ##
   # Return a unit-less formula for the recipe in baker's percentages
   
-  def scale factor
-    metadata = self.metadata
-    steps = self.steps
-    steps.each do |s| 
-      s.techniques.map do |t| 
-        t.is_a?(Ingredient) ? "foo" : t
+  def scale by
+    new_steps = self.steps.map do |s| 
+      args =  s.techniques.map do |t| 
+        t.is_a?(Ingredient) ? t.scale(by) : t
       end
+      Step.new args[0]
     end
+
+    Recipe.new self.metadata, new_steps
   end
 
   def bakers_percent_formula
