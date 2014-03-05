@@ -2,7 +2,7 @@
 # This class represents an ingredient in a Recipe
 
 class Ingredient
-  attr_accessor :name, :quantity, :units, :type
+  attr_accessor :info, :name, :quantity, :units, :type
 
   ##
   # Creates a new ingredient +name+, with the optional qualities +info+.
@@ -14,6 +14,7 @@ class Ingredient
   def initialize name, info={}
     @units = 'grams'
     @name = name
+    @info = info
     info.each do |k,v| 
       instance_variable_set("@#{k}", v)
     end
@@ -112,6 +113,16 @@ class Recipe
   ##
   # Return a unit-less formula for the recipe in baker's percentages
   
+  def scale factor
+    metadata = self.metadata
+    steps = self.steps
+    steps.each do |s| 
+      s.techniques.map do |t| 
+        t.is_a?(Ingredient) ? "foo" : t
+      end
+    end
+  end
+
   def bakers_percent_formula
     h = Hash.new
     self.ingredients.map do |i|
