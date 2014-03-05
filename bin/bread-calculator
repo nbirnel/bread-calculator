@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'bread_calculator'
+require 'pp'
 
 # Boilerplate for adding flags.
 loop { case ARGV[0]
@@ -69,4 +70,4 @@ metadata = {
 }
 
 r = Recipe.new metadata, @steps
-puts r.bakers_percent_formula
+pp r.bakers_percent_formula
