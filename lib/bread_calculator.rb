@@ -21,7 +21,7 @@ class Ingredient
   end
 
   ##
-  # return a new Ingredient, scaled from current instance by +ratio+
+  # Returns a new Ingredient, scaled from current instance by +ratio+
   
   def scale_by ratio
     scaled = Hash.new
@@ -69,7 +69,7 @@ class Recipe
   attr_reader :steps, :metadata
   
   ##
-  # Create a new recipe with hash +metadata+ and array of Steps +steps+
+  # Creates a new Recipe with hash +metadata+ and array of Steps +steps+
   #
   # +metadata+ is freeform, but most likely should include +:name+.
   # Other likely keys are: 
@@ -83,7 +83,7 @@ class Recipe
   end
 
   ##
-  # Return an array of all Ingredients in all Steps for the Recipe
+  # Returns an array of all Ingredients in Recipe
   
   def ingredients
     a = Array.new
@@ -96,7 +96,7 @@ class Recipe
   end
 
   ##
-  # Return the weight of all ingredients
+  # Returns the total weight of Ingredients in Recipe
   
   def weight
     self.ingredients.map{|i| i.quantity}.reduce(:+)
@@ -116,14 +116,14 @@ class Recipe
   alias_method 'bakers_percent_100', 'total_flours'
 
   ##
-  # Return the baker's percentage of a weight
+  # Returns the baker's percentage of a weight
   
   def bakers_percent weight
     weight / bakers_percent_100.to_f
   end
 
   ## 
-  # Scale a recipe by +ratio+
+  # Returns new Recipe scaled by +ratio+
 
   def scale_by ratio
     new_steps = self.steps.map do |s| 
@@ -137,7 +137,7 @@ class Recipe
   end
 
   ##
-  # Return a unit-less formula for the recipe in baker's percentages
+  # Returns a unit-less summary of Recipe in baker's percentages
   
   def bakers_percent_summary
     h = Hash.new
