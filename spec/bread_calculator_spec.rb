@@ -59,6 +59,11 @@ describe 'bread_calculator' do
       }
     end
 
+    it 'scales' do
+      @recipe.scale(1.5).should be_instance_of Recipe
+    end
+
+
   end
 
 end
