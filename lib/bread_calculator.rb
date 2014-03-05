@@ -21,7 +21,7 @@ class Ingredient
   end
 
   ##
-  # creates a new Ingredient, with +quantity+ scaled by +factor+
+  # return a new Ingredient, scaled from current instance by +ratio+
   
   def scale_by ratio
     scaled = Hash.new
