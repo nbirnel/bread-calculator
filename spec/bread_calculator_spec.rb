@@ -44,7 +44,7 @@ describe 'bread_calculator' do
     end
 
     it 'pretty prints' do
-      @recipe.to_text.should eq 'foo'
+      @recipe.to_text.is_a?(String).should be_true
     end
 
     it 'generates a baker\'s percentage summary' do

@@ -36,9 +36,8 @@ class Ingredient
   # Print a nice text version of Ingredient
   
   def to_text
-    [:quantity, :units, :name].each do |el|
-      #FIXME check existence && print
-    end
+    #FIXME check for existance
+    "\t#{@quantity} #{@units} #{@name}\n"
   end
 end
 
@@ -74,9 +73,13 @@ class Step
   # Print a nice text version of Step
   
   def to_text
+    out = ''
     self.techniques.each do |t| 
-      t.is_a?(Ingredient) ? t.to_text : puts(t)
+      tmp =  t.is_a?(Ingredient) ? t.to_text : "#{t.chomp}\n"
+      out << tmp
     end
+    out << "\n"
+    out
   end
 end
 
@@ -181,9 +184,11 @@ class Recipe
   # Print a nice text version of Recipe
   
   def to_text
-    self.metadata.each{|k,v| puts "#{k}: #{v}"}
-    puts "--------------------"
-    self.steps.each{|s| s.to_text }
+    out = ''
+    self.metadata.each{|k,v| out << "#{k}: #{v}\n"}
+    out << "--------------------\n"
+    self.steps.each{|s| out << s.to_text }
+    out
   end
 
 end
