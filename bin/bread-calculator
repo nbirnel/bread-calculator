@@ -3,8 +3,11 @@
 require 'bread_calculator'
 require 'pp'
 
+@format = 'formula'
 # Boilerplate for adding flags.
+
 loop { case ARGV[0]
+  when /-summary/ then @format = 'summary'; ARGV.shift; break
   when /--/ then ARGV.shift; break
   when /^-/ then usage("Unknown option: #{ARGV[0].inspect}")
   else break
@@ -70,4 +73,5 @@ metadata = {
 }
 
 r = Recipe.new metadata, @steps
-pp r.bakers_percent_summary
+output = eval("r.bakers_percent_#{@format}")
+pp output
