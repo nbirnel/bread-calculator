@@ -14,7 +14,8 @@ describe 'bread_calculator' do
     @dry     = Step.new 'Mix together:', @ww, @ap, @milk, 'in  a large bowl'
     @mix     = Step.new 'Combine wet and dry ingredients with', @raisins
     @bake    = Step.new 'Form a loaf, rise for 2 hours, Bake at 375° for 45 minutes.'
-    @recipe  = Recipe.new 'metadata', [@proof, @wet, @dry, @mix, @bake]
+    @meta    = {:notes => 'nice sandwich bread'}
+    @recipe  = Recipe.new @meta, [@proof, @wet, @dry, @mix, @bake]
   end
 
   describe Ingredient do
@@ -43,8 +44,7 @@ describe 'bread_calculator' do
     end
 
     it 'pretty prints' do
-      pending
-      @recipe.pretty_print.should eq FIXME
+      @recipe.to_text.should eq 'foo'
     end
 
     it 'generates a baker\'s percentage summary' do
