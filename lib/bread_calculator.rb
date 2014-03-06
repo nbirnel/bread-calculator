@@ -31,6 +31,15 @@ class Ingredient
     end
     Ingredient.new(self.name, scaled)
   end
+  
+  ##
+  # Print a nice text version of Ingredient
+  
+  def to_text
+    [:quantity, :units, :name].each do |el|
+      #FIXME check existence && print
+    end
+  end
 end
 
 ## 
@@ -59,6 +68,15 @@ class Step
   def techniques= args
     @techniques = args
     @ingredients = args.select{|arg| arg.is_a? Ingredient}
+  end
+  
+  ##
+  # Print a nice text version of Step
+  
+  def to_text
+    self.techniques.each do |t| 
+      t.is_a?(Ingredient) ? t.to_text : puts(t)
+    end
   end
 end
 
@@ -157,6 +175,15 @@ class Recipe
       h[i.name] = self.bakers_percent i.quantity
     end
     h
+  end
+
+  ##
+  # Print a nice text version of Recipe
+  
+  def to_text
+    self.metadata.each{|k,v| puts "#{k}: #{v}"}
+    puts "--------------------"
+    self.steps.each{|s| s.to_text }
   end
 
 end
