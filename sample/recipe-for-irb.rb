@@ -1,3 +1,4 @@
+# coding: utf-8
     @ww      = BreadCalculator::Ingredient.new "whole wheat flour", :quantity => 300, :units => 'grams', :type=>:flours
     @ap      = BreadCalculator::Ingredient.new "all purpose flour", :quantity => 700, :units => 'grams', :type=>:flours
     @water   = BreadCalculator::Ingredient.new "water", :quantity => 550, :units => 'grams', :type=>:liquids
