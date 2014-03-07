@@ -13,9 +13,3 @@ License
 ---------
 © 2014 Noah Birnel
 MIT license
-
-
-
-
-
-
