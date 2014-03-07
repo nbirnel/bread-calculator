@@ -11,5 +11,5 @@ Gem::Specification.new do |s|
   s.files       = ['README.md', 'bread_calculator.gemspec', 'lib/bread_calculator.rb', 'spec/bread_calculator_spec.rb', 'bin/bread-calculator']
   s.has_rdoc    = true
   s.executables = ['bread-calculator']
-  s.license     = 'DWTFYW'
+  s.license     = 'MIT'
 end
