@@ -6,8 +6,18 @@ Installation
 ---------
 gem install bakers_percentage
 
+Runtime Requirements
+---------
+ruby >= 1.9.2
+
+Build Requirements
+---------
+rake
+bundle
+
 Inspiration and History
 ---------
+Baker's percentages make baking easier, but I don't like to do the math.
 
 License
 ---------
