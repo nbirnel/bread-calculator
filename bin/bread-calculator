@@ -15,7 +15,7 @@ end; }
 
 @i = 0
 @args = @steps = []
-@steps[0] = Step.new
+@steps[0] = BreadCalculator::Step.new
 
 def preprocess line
   ing_regex = /^\s+((?<qty>[0-9.]+\s*)(?<units>g)?\s+)?(?<item>.*)/
@@ -35,7 +35,7 @@ def preprocess line
     h[:type] = :liquids   if name =~ /milk/
     h[:type] = :additives if name =~ /dry/
 
-    ing = Ingredient.new name, h
+    ing = BreadCalculator::Ingredient.new name, h
   else
     line.strip
   end
@@ -51,7 +51,7 @@ def new_step
 
   @args = []
   @i += 1
-  @steps[@i] = Step.new
+  @steps[@i] = BreadCalculator::Step.new
 end
 
 @in_prelude = true
@@ -72,6 +72,6 @@ metadata = {
   :notes => @prelude,
 }
 
-r = Recipe.new metadata, @steps
+r = BreadCalculator::Recipe.new metadata, @steps
 output = eval("r.bakers_percent_#{@format}")
 pp output
