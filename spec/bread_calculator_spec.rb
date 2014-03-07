@@ -76,4 +76,21 @@ describe BreadCalculator do
 
   end
 
+  describe BreadCalculator::Parser do
+    before do
+      @sample = "#{File.dirname(__FILE__)}/../sample/sandwich-bread.recipe"
+      @parser = BreadCalculator::Parser.new 'Sandwich Bread'
+      @r = @parser.parse "#{@sample}"
+    end
+
+    it 'gets a recipe from a text file' do
+      @r.is_a?(BreadCalculator::Recipe).should be_true
+    end
+
+    it 'gets a recipe from a standard in' do
+      pending
+    end
+
+  end
+
 end

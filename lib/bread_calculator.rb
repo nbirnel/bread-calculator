@@ -193,5 +193,82 @@ module BreadCalculator
     end
 
   end
+  
+  class Parser
+
+    def initialize name
+      @name = name
+
+      @i = 0
+      @args = @steps = []
+      @steps[0] = BreadCalculator::Step.new
+
+      @in_prelude = true
+      @prelude = ''
+    end
+
+    def parse input
+
+      IO.foreach(input) do |line|
+        new_step         && next if line =~ /(^-)|(^\s*$)/
+        @prelude << line && next if @in_prelude
+
+        @args << preprocess(line.chomp)
+      end   
+
+      close_step
+      # because we made a spurious one to begin with
+      @steps.shift
+      metadata = {
+        :name  => @name,
+        :notes => @prelude,
+      }
+
+      Recipe.new metadata, @steps
+    end
+
+    private
+
+    def new_step
+      @in_prelude = false
+      close_step
+
+      @args = []
+      @i += 1
+      @steps[@i] = BreadCalculator::Step.new
+    end
+
+    def close_step
+      @steps[@i].techniques = @args
+    end
+
+    def preprocess line
+      ing_regex = /^\s+((?<qty>[0-9.]+\s*)(?<units>g)?\s+)?(?<item>.*)/
+      h = Hash.new
+      if ing_regex =~ line 
+        match = Regexp.last_match
+        h[:quantity] = match[:qty].strip.to_f
+        h[:units]    = match[:units]
+        ingredient   = match[:item].strip
+
+        #FIXME refactor
+        h[:type] = :additives #if it doesn't match anything else
+        h[:type] = :flours    if ingredient =~ /flour/
+        h[:type] = :flours    if ingredient =~ /meal/
+        h[:type] = :liquids   if ingredient =~ /liquid/
+        h[:type] = :liquids   if ingredient =~ /water/
+        h[:type] = :liquids   if ingredient =~ /egg/
+        h[:type] = :liquids   if ingredient =~ /mashed/
+        h[:type] = :liquids   if ingredient =~ /milk/
+        h[:type] = :additives if ingredient =~ /dry/
+        h[:type] = :additives if ingredient =~ /powdered/
+
+        ing = BreadCalculator::Ingredient.new ingredient, h
+      else
+        line.strip
+      end
+    end
+
+  end
 
 end
