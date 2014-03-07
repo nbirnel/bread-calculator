@@ -35,7 +35,7 @@ class Ingredient
   ##
   # Print a nice text version of Ingredient
   
-  def inspect
+  def to_s
     #FIXME check for existance
     "\t#{@quantity} #{@units} #{@name}\n"
   end
@@ -72,10 +72,10 @@ class Step
   ##
   # Print a nice text version of Step
   
-  def inspect
+  def to_s
     out = ''
     self.techniques.each do |t| 
-      tmp =  t.is_a?(Ingredient) ? t.inspect : "#{t.chomp}\n"
+      tmp =  t.is_a?(Ingredient) ? t.to_s : "#{t.chomp}\n"
       out << tmp
     end
     out << "\n"
@@ -183,11 +183,11 @@ class Recipe
   ##
   # Print a nice text version of Recipe
   
-  def inspect
+  def to_s
     out = ''
     self.metadata.each{|k,v| out << "#{k}: #{v}\n"}
     out << "--------------------\n"
-    self.steps.each{|s| out << s.inspect }
+    self.steps.each{|s| out << s.to_s }
     out
   end
 
