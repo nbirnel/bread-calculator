@@ -8,14 +8,14 @@ require 'bread_calculator'
 def help
   puts <<EOF
 NAME
-  bread-calculator
+  bread-calc
 SYNOPSIS
-  bread-calculator [OPTIONS] FILE
+  bread-calc [OPTIONS] FILE
 DESCRIPTION
-  bread-calculator parses a nearly free-form bread recipe in file FILE. By 
-  default the canonical representation of the recipe is printed to standard
-  out. Optionally, the weight, or bakers percentage formula can be generated,
-  or the recipe can by scaled up or down.
+  bread-calc parses a nearly free-form bread recipe in file FILE. By default
+  the canonical representation of the recipe is printed to standard out.
+  Optionally, the weight, or bakers percentage formula can be generated, or the
+  recipe can by scaled up or down.
 OPTIONS:
   --help 
     print this help
@@ -32,9 +32,9 @@ FORMATS
   Each step is delimited by one or more blank lines.
 
   Any line in a step starting with a space or a blank is an ingredient,
-  consisting of quantity, units, and the ingredient itself. Bread-calculator
-  will attempt to guess at the type of ingredient, but you can always force it
-  by including one of the words 'flour', 'liquid', or 'additive' in the line.
+  consisting of quantity, units, and the ingredient itself. bread-calc will
+  attempt to guess at the type of ingredient, but you can always force it by
+  including one of the words 'flour', 'liquid', or 'additive' in the line.
 BUGS
   It is cheerfully assumed that all units are grams.
 

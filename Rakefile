@@ -4,7 +4,7 @@ RSpec::Core::RakeTask.new('spec')
 
 VER  = '0.0.0'
 PROG = 'bread_calculator'
-NAME = 'bread-calculator'
+NAME = 'bread-calc'
 LIB  = FileList['lib/*.rb']
 BIN  = FileList['bin/*.rb']
 TEST = FileList['spec/*.rb']
