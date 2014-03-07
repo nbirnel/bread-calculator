@@ -1,4 +1,8 @@
+##
+# Classes for manipulating bread recipes and baker's percentages
+
 module BreadCalculator
+
   ##
   # This class represents an ingredient in a Recipe
 
@@ -167,7 +171,7 @@ module BreadCalculator
     end
 
     ##
-    # Returns a unit-less summary of Recipe in baker's percentages
+    # Returns a BakersPercentSummary
     
     def bakers_percent_summary
       types = Hash.new
@@ -194,9 +198,15 @@ module BreadCalculator
     end
 
   end
+
+  ##
+  # This class converts a nearly free-form text file to a Recipe
   
   class Parser
 
+    ##
+    # Create a new parser for Recipe +name+.
+    
     def initialize name
       @name = name
 
@@ -208,6 +218,9 @@ module BreadCalculator
       @prelude = ''
     end
 
+    ##
+    # Parse our text
+    
     def parse input
 
       IO.foreach(input) do |line|
@@ -272,14 +285,25 @@ module BreadCalculator
 
   end
 
+  ##
+  # This class represents a summary of a Recipe - no Steps or units, just
+  # baker's percentages of each ingredient, and a prelude of baker's 
+  # percentages for flours, liquids, and additives.
+
   class BakersPercentSummary
     attr_accessor :types, :ingredients
+
+    ##
+    # Create a new BakersPercentSummary of +types+ and +ingredients+
 
     def initialize types, ingredients
       @types = types
       @ingredients = ingredients
     end
 
+    ##
+    # Print it nicely
+    
     def to_s
       out = ''
       self.types.each{|k,v| out << "#{k}: #{v}\n"}
