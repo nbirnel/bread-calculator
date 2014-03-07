@@ -171,9 +171,9 @@ module BreadCalculator
     end
 
     ##
-    # Returns a BakersPercentSummary
+    # Returns a Summary
     
-    def bakers_percent_summary
+    def summary
       types = Hash.new
       [:flours, :liquids, :additives].each do |s|
         types["total_#{s}"] = self.bakers_percent eval("self.total_#{s}")
@@ -183,7 +183,7 @@ module BreadCalculator
       self.ingredients.map do |i|
         l_ingredients[i.name] = self.bakers_percent i.quantity
       end
-      BakersPercentSummary.new types, l_ingredients
+      Summary.new types, l_ingredients
     end
 
     ##
@@ -290,11 +290,11 @@ module BreadCalculator
   # baker's percentages of each ingredient, and a prelude of baker's 
   # percentages for flours, liquids, and additives.
 
-  class BakersPercentSummary
+  class Summary
     attr_accessor :types, :ingredients
 
     ##
-    # Create a new BakersPercentSummary of +types+ and +ingredients+
+    # Create a new Summary of +types+ and +ingredients+
 
     def initialize types, ingredients
       @types = types

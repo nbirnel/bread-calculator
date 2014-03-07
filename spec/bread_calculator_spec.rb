@@ -49,7 +49,7 @@ describe BreadCalculator do
     end
 
     it 'generates a baker\'s percentage summary' do
-      @recipe.bakers_percent_summary.is_a?(BreadCalculator::BakersPercentSummary).should be_true
+      @recipe.summary.is_a?(BreadCalculator::Summary).should be_true
     end
 
     it 'scales' do
