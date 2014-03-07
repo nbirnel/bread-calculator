@@ -267,15 +267,17 @@ module BreadCalculator
 
         #FIXME refactor
         h[:type] = :additives #if it doesn't match anything else
-        h[:type] = :flours    if ingredient =~ /flour/
         h[:type] = :flours    if ingredient =~ /meal/
-        h[:type] = :liquids   if ingredient =~ /liquid/
         h[:type] = :liquids   if ingredient =~ /water/
         h[:type] = :liquids   if ingredient =~ /egg/
         h[:type] = :liquids   if ingredient =~ /mashed/
         h[:type] = :liquids   if ingredient =~ /milk/
         h[:type] = :additives if ingredient =~ /dry/
         h[:type] = :additives if ingredient =~ /powdered/
+
+        h[:type] = :flours    if ingredient =~ /flour/
+        h[:type] = :liquids   if ingredient =~ /liquid/
+        h[:type] = :liquids   if ingredient =~ /additive/
 
         ing = BreadCalculator::Ingredient.new ingredient, h
       else
