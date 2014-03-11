@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
-#require 'bread_calculator'
-require  "#{File.dirname(__FILE__)}/../lib/bread_calculator"
+require 'bread_calculator'
+#require  "#{File.dirname(__FILE__)}/../lib/bread_calculator"
 
 def help status=true
   puts <<EOF
@@ -24,8 +24,14 @@ OPTIONS:
   --scale-by FACTOR
     regenerate the recipe, scaling up or down by FACTOR
 FORMATS
-  The recipe format starts with a free-form prelude. Any line starting with a
-  hyphen ends the prelude and starts the first step. 
+  The recipe format consists of a metadata prelude, and steps.
+
+  In prelude lines, anything before a colon is considered to be the name of a
+  metadata field; anything after the colon is a value to populate. Lines
+  without colons are continuations of the 'notes' field. It is suggested to 
+  have at least a 'name' field.
+  
+  A line starting with a hyphen ends the prelude and starts the first step. 
 
   Each step is delimited by one or more blank lines.
 
