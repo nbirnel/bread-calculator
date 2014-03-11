@@ -12,9 +12,11 @@ MAN  = FileList['man/man*/*.?']
 MANFILE = "#{NAME}.1"
 SPEC = "#{PROG}.gemspec"
 GEM  = "#{PROG}-#{VER}.gem"
-CLEAN.include('doc', '*.gem')
+CLEAN.include('doc', '*.gem', 'README.md')
 MANDIR = '/usr/local/man/man1/'
 MANDEST = [MANDIR, MANFILE].join '/'
+README = 'README.md'
+READMESRC = 'doc-src/README.md'
 
 task :all => [:spec, :install]
 
@@ -28,9 +30,14 @@ file 'doc' => LIB  do
   `rdoc lib/`        #FIXME shell out not cool
 end
 
+file 'readme' =>[READMESRC, MAN].flatten do
+  `cp #{READMESRC} #{README}`
+  `groff -tman -Thtml #{MAN} | sed '/<html/,$!d; /<style/,/<\\/style>/d' >>#{README}`
+end
+
 task :gem => GEM
 
-file GEM => [LIB, BIN, TEST, MAN, SPEC].flatten do
+file GEM => [LIB, BIN, TEST, MAN, SPEC, README].flatten do
   `gem build #{SPEC}`            #FIXME shell out not cool
 end
 

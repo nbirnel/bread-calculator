@@ -22,7 +22,10 @@ ruby >= 1.9.2
 Build Requirements
 ---------
 rake
-bundle
+
+Developer Requirements
+---------
+groff
 
 Inspiration and History
 ---------
@@ -32,3 +35,6 @@ License
 ---------
 © 2014 Noah Birnel
 MIT license
+
+Man page
+---------
