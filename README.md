@@ -121,7 +121,11 @@ FACTOR</p>
 
 
 <p style="margin-left:11%; margin-top: 1em"><b>bread-calc
---summary sample.recipe</b></p>
+--summary sample.recipe</b> summarize a recipe</p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>bread-calc
+--scale-by .5 sample.recipe | bread-calc --html
+&gt;sample.html</b> halve a recipe and render as html</p>
 
 <h2>FORMATS
 <a name="FORMATS"></a>

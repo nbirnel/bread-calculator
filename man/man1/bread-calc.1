@@ -28,7 +28,12 @@ print the weight
 .B --scale-by FACTOR
 regenerate the recipe, scaling up or down by FACTOR
 .SH EXAMPLES
+.LP
 .B bread-calc --summary sample.recipe
+summarize a recipe
+.LP
+.B bread-calc --scale-by .5 sample.recipe | bread-calc --html >sample.html
+halve a recipe and render as html
 .SH FORMATS
 The recipe format consists of a metadata prelude, and steps.
 
