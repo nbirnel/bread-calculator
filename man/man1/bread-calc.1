@@ -1,0 +1,64 @@
+.TH bread-calc 1 bread-calc\-0.0.1
+.SH NAME
+bread-calc \- calculate baker's percentages
+.SH SYNOPSIS
+.B bread-calc [OPTIONS] [FILE]
+.SH DESCRIPTION
+.B bread-calc
+parses a nearly free\(hyform bread recipe in file FILE,
+or from standard in.
+By default,
+the canonical representation of the recipe is printed to standard out.
+Optionally, the weight, or bakers percentage formula can be generated,
+or the recipe can by scaled up or down.
+.SH OPTIONS
+.LP
+.B --help 
+print this help
+.LP
+.B --summary
+print a baker's percentage summary
+.LP
+.B --weight
+print the weight
+.LP
+.B --scale-by FACTOR
+regenerate the recipe, scaling up or down by FACTOR
+.SH EXAMPLES
+.B bread-calc --summary sample.recipe
+.SH FORMATS
+The recipe format consists of a metadata prelude, and steps.
+
+In prelude lines,
+anything before a colon is considered to be the name of a metadata field;
+anything after the colon is a value to populate.
+Lines without colons are continuations of the 'notes' field.
+I suggest having at least a 'name' field.
+
+A line starting with a hyphen ends the prelude and starts the first step. 
+
+Each step is delimited by one or more blank lines.
+
+Any line in a step starting with a space or a blank is an ingredient,
+consisting of quantity, units, and the ingredient itself.
+.B bread-calc
+will attempt to guess at the type of ingredient,
+but you can always force it by including 
+one of the words 'flour', 'liquid', or 'additive' in the line.
+.SH SEE ALSO
+.TP
+.IR ruby(1)
+.TP
+.IR http://en.wikipedia.org/wiki/Baker%27s_percentage
+.TP
+.IR http://rubygems.org/gems/bread_calculator
+.SH BUGS
+It is cheerfully assumed that all units are grams.
+
+It is undefined how 'liquid flour additive' is parsed,
+but don't expect anything good.
+.SH LICENSE
+Copyright 2014 Noah Birnel
+.sp
+MIT License
+
