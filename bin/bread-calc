@@ -8,12 +8,12 @@ def help status=true
 NAME
   bread-calc
 SYNOPSIS
-  bread-calc [OPTIONS] FILE
+  bread-calc [OPTIONS] [FILE]
 DESCRIPTION
-  bread-calc parses a nearly free-form bread recipe in file FILE. By default
-  the canonical representation of the recipe is printed to standard out.
-  Optionally, the weight, or bakers percentage formula can be generated, or the
-  recipe can by scaled up or down.
+  bread-calc parses a nearly free-form bread recipe in file FILE, or from
+  standard in. By default the canonical representation of the recipe is printed
+  to standard out.  Optionally, the weight, or bakers percentage formula can be
+  generated, or the recipe can by scaled up or down.
 OPTIONS:
   --help 
     print this help
@@ -70,8 +70,7 @@ end; }
 
 help if @help
 
-ARGV.each do |arg|
-  parser = BreadCalculator::Parser.new
-  r = parser.parse(arg)
-  puts eval("#{@get}")
-end
+parser = BreadCalculator::Parser.new
+r = parser.parse ARGF.file
+puts eval("#{@get}")
+

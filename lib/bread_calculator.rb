@@ -213,7 +213,7 @@ module BreadCalculator
   class Parser
 
     ##
-    # Create a new parser for Recipe +name+.
+    # Create a new parser for Recipe
     
     def initialize
       @i = 0
@@ -226,11 +226,12 @@ module BreadCalculator
     end
 
     ##
-    # Parse our text
+    # Parse text from IO object +input+. It is the caller's responsibility to
+    # open and close the +input+ correctly.
     
     def parse input
 
-      IO.foreach(input) do |line|
+      while line = input.gets
         new_step              && next if line =~ /(^-)|(^\s*$)/
         preprocess_meta(line) && next if @in_prelude
 
