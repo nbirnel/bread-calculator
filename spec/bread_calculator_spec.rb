@@ -45,8 +45,7 @@ describe BreadCalculator do
     end
 
     it 'pretty prints' do
-      pending
-      @recipe.to_s.is_a?(String).should be_true
+      @recipe.to_s.include?('-----------').should be_true
     end
 
     it 'generates a baker\'s percentage summary' do
