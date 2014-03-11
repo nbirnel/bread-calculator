@@ -41,13 +41,39 @@ Each step is delimited by one or more blank lines.
 
 Any line in a step starting with a space or a blank is an ingredient,
 consisting of quantity, units, and the ingredient itself.
+
 .B bread-calc
 will attempt to guess at the type of ingredient,
 but you can always force it by including 
 one of the words 'flour', 'liquid', or 'additive' in the line.
+
+Here is a brief example:
+
+
+.in +4
+name: imaginary bread
+.br
+notes: This is a silly fake bread recipe
+.br
+makes: 1 bad loaf
+.br
+This line will become part of the notes
+.br
+---------------------
+.br
+Mix:
+.in +4
+500 g flour
+.br
+300 g water
+.sp
+.in -4
+Bake at 375\(de
+.in -4
+
 .SH SEE ALSO
 .TP
-.IR ruby(1)
+.BR ruby(1)
 .TP
 .IR http://en.wikipedia.org/wiki/Baker%27s_percentage
 .TP
