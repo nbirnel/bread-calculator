@@ -4,7 +4,16 @@ A ruby gem to calculate baker's percentages
 
 Installation
 ---------
-gem install bakers_percentage
+`gem install bakers_percentage`
+
+or, if you want the latest and the greatest, 
+or if you want the man page installed:
+
+`git clone https://github.com/bread-calculator
+cd bread-calculator
+rake install`
+
+(use sudo as necessary)
 
 Runtime Requirements
 ---------
