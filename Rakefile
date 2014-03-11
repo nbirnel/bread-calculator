@@ -2,7 +2,7 @@ require 'rspec/core/rake_task'
 require 'rake/clean'
 RSpec::Core::RakeTask.new('spec')
 
-VER  = '0.2.0'
+VER  = '0.2.1'
 PROG = 'bread_calculator'
 NAME = 'bread-calc'
 LIB  = FileList['lib/*.rb']
@@ -30,7 +30,9 @@ file 'doc' => LIB  do
   `rdoc lib/`        #FIXME shell out not cool
 end
 
-file 'readme' =>[READMESRC, MAN].flatten do
+task :readme => README
+
+file README =>[READMESRC, MAN].flatten do
   `cp #{READMESRC} #{README}`
   `groff -tman -Thtml #{MAN} | sed '/<html/,$!d; /<style/,/<\\/style>/d' >>#{README}`
 end
