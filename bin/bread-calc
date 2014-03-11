@@ -59,7 +59,8 @@ loop { case ARGV[0]
   when /--help/     then             @help = 'help'     ;  ARGV.shift; break
   when /--summary/  then             @get  = 'r.summary';  ARGV.shift
   when /--weight/   then             @get  = 'r.weight';   ARGV.shift
-  when /--scale-by/ then ARGV.shift; @get  = "r.scale_by #{ARGV.shift}"
+    #.to_f protects against 'no .<digit> floating literal anymore' for .33
+  when /--scale-by/ then ARGV.shift; @get  = "r.scale_by #{ARGV.shift.to_f}"
   when /--/ then ARGV.shift; break
   when /^-/ then help 1
   else break
