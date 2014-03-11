@@ -3,6 +3,8 @@
 
 module BreadCalculator
 
+  require 'cgi'
+
   ##
   # This class represents an ingredient in a Recipe
 
@@ -52,6 +54,14 @@ module BreadCalculator
       f_quantity = sprintf "%.#{precision}f", @quantity
       "\t#{f_quantity} #{@units} #{@name}\n"
     end
+
+    ##
+    # Print ingredient as an html unordered list item
+    
+    def to_html
+      "  <li>#{CGI.escapeHTML(self.to_s.strip.chomp)}</li>\n"
+    end
+
   end
 
   ## 
@@ -92,6 +102,19 @@ module BreadCalculator
         out << tmp
       end
       out << "\n"
+      out
+    end
+
+    ##
+    # Print Step as an html paragraph
+
+    def to_html
+      out = "<p>\n"
+      self.techniques.each do |t| 
+        tmp =  t.is_a?(Ingredient) ? t.to_html : "#{CGI.escapeHTML(t.chomp)}"
+        out << tmp
+      end
+      out << "\n</p>\n"
       out
     end
   end
@@ -202,6 +225,18 @@ module BreadCalculator
       self.metadata.each{|k,v| out << "#{k}: #{v}\n"}
       out << "--------------------\n"
       self.steps.each{|s| out << s.to_s }
+      out
+    end
+
+    ##
+    # Print recipe as html.
+    # It is the caller's responsibility to provide appropriate headers, etc.
+
+    def to_html
+      out = ''
+      self.metadata.each{|k,v| out << "<p>\n<b>#{k}</b>: #{v}\n</p>\n"}
+      out << "--------------------\n"
+      self.steps.each{|s| out << s.to_html }
       out
     end
 

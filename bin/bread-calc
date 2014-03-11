@@ -3,12 +3,19 @@
 require 'bread_calculator'
 #require  "#{File.dirname(__FILE__)}/../lib/bread_calculator"
 
+def htm_header
+  puts '<head>'
+  puts '  <meta charset="UTF-8">'
+  puts '</head>'
+end
+
 def help status=true
   puts <<EOF
 USAGE: bread-calc [OPTIONS] [FILE]
 where OPTIONS are any of:
   --help 
   --summary
+  --html
   --weight
   --scale-by FACTOR
 
@@ -29,6 +36,7 @@ end
 loop { case ARGV[0]
   when /--help/     then             @help = 'help'     ;  ARGV.shift; break
   when /--summary/  then             @get  = 'r.summary';  ARGV.shift
+  when /--html/     then             @get  = 'r.to_html';  ARGV.shift
   when /--weight/   then             @get  = 'r.weight';   ARGV.shift
     #.to_f protects against 'no .<digit> floating literal anymore' for .33
   when /--scale-by/ then ARGV.shift; @get  = "r.scale_by #{ARGV.shift.to_f}"
@@ -41,5 +49,6 @@ help if @help
 
 parser = BreadCalculator::Parser.new
 r = parser.parse ARGF.file
+htm_header if @get.include? 'html'
 puts eval("#{@get}")
 

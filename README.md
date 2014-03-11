@@ -104,6 +104,9 @@ print this help</p>
 <p style="margin-left:11%; margin-top: 1em"><b>--summary</b>
 print a baker&rsquo;s percentage summary</p>
 
+<p style="margin-left:11%; margin-top: 1em"><b>--html</b>
+print recipe as html.</p>
+
 
 <p style="margin-left:11%; margin-top: 1em"><b>--weight</b>
 print the weight</p>

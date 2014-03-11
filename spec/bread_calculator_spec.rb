@@ -62,6 +62,10 @@ describe BreadCalculator do
       @recipe.bakers_percent_formula.total_flours.should eq 100.0
     end
 
+    it 'generates html' do
+      @recipe.to_html.include?('<').should be_true
+    end
+
   end
 
   describe BreadCalculator::Parser do
