@@ -155,7 +155,8 @@ always force it by including one of the words
 &rsquo;additive&rsquo; in the line.</p>
 
 <p style="margin-left:11%; margin-top: 1em">Here is a brief
-example:</p>
+example (note that github displays the indenting
+incorrectly):</p>
 
 <p style="margin-left:17%; margin-top: 1em">name: imaginary
 bread <br>
