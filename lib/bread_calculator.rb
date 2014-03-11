@@ -42,7 +42,15 @@ module BreadCalculator
     
     def to_s
       #FIXME check for existance
-      "\t#{@quantity} #{@units} #{@name}\n"
+      precision = 0
+      if @quantity < 10
+        precision = 1
+      end
+      if @quantity < 1
+        precision = 2
+      end
+      f_quantity = sprintf "%.#{precision}f", @quantity
+      "\t#{f_quantity} #{@units} #{@name}\n"
     end
   end
 
