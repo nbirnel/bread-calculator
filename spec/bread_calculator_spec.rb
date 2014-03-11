@@ -67,7 +67,7 @@ describe BreadCalculator do
   describe BreadCalculator::Parser do
     before do
       @sample = "#{File.dirname(__FILE__)}/../sample/sandwich-bread.recipe"
-      @parser = BreadCalculator::Parser.new 'Sandwich Bread'
+      @parser = BreadCalculator::Parser.new 
       @r = @parser.parse "#{@sample}"
     end
 
@@ -77,6 +77,11 @@ describe BreadCalculator do
 
     it 'gets a recipe from a standard in' do
       pending
+    end
+
+    it 'generates metadata' do
+      #@r.metadata[:notes].is_a?(String).should be_true
+      @r.metadata[:notes].length.should == 86
     end
 
   end

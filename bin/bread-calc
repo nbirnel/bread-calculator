@@ -1,9 +1,7 @@
 #!/usr/bin/env ruby
 
-require 'bread_calculator'
-
-@get = 'r'
-@help = nil
+#require 'bread_calculator'
+require  "#{File.dirname(__FILE__)}/../lib/bread_calculator"
 
 def help status=true
   puts <<EOF
@@ -44,9 +42,12 @@ BUGS
   anything good.
 EOF
   
-exit status
+  exit status
 
 end
+
+@get = 'r'
+@help = nil
 
 loop { case ARGV[0]
   when /--help/     then             @help = 'help'     ;  ARGV.shift; break
@@ -61,7 +62,7 @@ end; }
 help if @help
 
 ARGV.each do |arg|
-  parser = BreadCalculator::Parser.new arg
+  parser = BreadCalculator::Parser.new
   r = parser.parse(arg)
   puts eval("#{@get}")
 end

@@ -207,15 +207,14 @@ module BreadCalculator
     ##
     # Create a new parser for Recipe +name+.
     
-    def initialize name
-      @name = name
-
+    def initialize
       @i = 0
       @args = @steps = []
       @steps[0] = BreadCalculator::Step.new
 
       @in_prelude = true
       @prelude = ''
+      @metadata = Hash.new(nil)
     end
 
     ##
@@ -224,21 +223,16 @@ module BreadCalculator
     def parse input
 
       IO.foreach(input) do |line|
-        new_step         && next if line =~ /(^-)|(^\s*$)/
-        @prelude << line && next if @in_prelude
+        new_step              && next if line =~ /(^-)|(^\s*$)/
+        preprocess_meta(line) && next if @in_prelude
 
-        @args << preprocess(line.chomp)
+        @args << preprocess_step(line.chomp)
       end   
 
       close_step
       # because we made a spurious one to begin with
       @steps.shift
-      metadata = {
-        :name  => @name,
-        :notes => @prelude,
-      }
-
-      Recipe.new metadata, @steps
+      Recipe.new @metadata, @steps
     end
 
     private
@@ -256,7 +250,19 @@ module BreadCalculator
       @steps[@i].techniques = @args
     end
 
-    def preprocess line
+    def preprocess_meta line
+      /^((?<key>[^:]+):)?(?<value>.*)/ =~ line
+      match = Regexp.last_match
+      key = match[:key] ? match[:key].strip.to_sym : :notes
+      if @metadata[key]
+        @metadata[key] << "\n\t"
+      else
+        @metadata[key] = ''
+      end
+      @metadata[key] << match[:value].strip
+    end
+
+    def preprocess_step line
       ing_regex = /^\s+((?<qty>[0-9.]+\s*)(?<units>g)?\s+)?(?<item>.*)/
       h = Hash.new
       if ing_regex =~ line 
