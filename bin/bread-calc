@@ -46,6 +46,8 @@ BUGS
 
   It is undefined how 'liquid flour additive' is parsed, but don't expect 
   anything good.
+
+  There is no man page.
 EOF
   
   exit status
