@@ -2,4 +2,3 @@ add a sort of 'conditional sprintf' to to_s methods
 figure out how to deal with different units
 smarter (or at least shorter) flour / liquid type determination
 exe reads standard in
-make text prelude key: value format
