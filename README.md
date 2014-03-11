@@ -144,18 +144,40 @@ delimited by one or more blank lines.</p>
 
 <p style="margin-left:11%; margin-top: 1em">Any line in a
 step starting with a space or a blank is an ingredient,
-consisting of quantity, units, and the ingredient itself.
-<b>bread-calc</b> will attempt to guess at the type of
-ingredient, but you can always force it by including one of
-the words &rsquo;flour&rsquo;, &rsquo;liquid&rsquo;, or
+consisting of quantity, units, and the ingredient
+itself.</p>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>bread-calc</b>
+will attempt to guess at the type of ingredient, but you can
+always force it by including one of the words
+&rsquo;flour&rsquo;, &rsquo;liquid&rsquo;, or
 &rsquo;additive&rsquo; in the line.</p>
+
+<p style="margin-left:11%; margin-top: 1em">Here is a brief
+example:</p>
+
+<p style="margin-left:17%; margin-top: 1em">name: imaginary
+bread <br>
+notes: This is a silly fake bread recipe <br>
+makes: 1 bad loaf <br>
+This line will become part of the notes <br>
+--------------------- <br>
+Mix:</p>
+
+<p style="margin-left:23%;">500 g flour <br>
+300 g water</p>
+
+<p style="margin-left:17%; margin-top: 1em">Bake at
+375&deg;</p>
 
 <h2>SEE ALSO
 <a name="SEE ALSO"></a>
 </h2>
 
 
-<p style="margin-left:11%; margin-top: 1em"><i>ruby(1) <br>
+<p style="margin-left:11%; margin-top: 1em"><b>ruby(1)</b>
+<i><br>
 http://en.wikipedia.org/wiki/Baker%27s_percentage <br>
 http://rubygems.org/gems/bread_calculator</i></p>
 
