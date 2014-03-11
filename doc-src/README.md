@@ -13,7 +13,7 @@ or if you want the man page installed:
     cd bread-calculator
     rake install
 
-(use sudo as necessary)
+(use `sudo` as necessary)
 
 Runtime Requirements
 ---------
