@@ -87,6 +87,7 @@ module BreadCalculator
 
     ##
     # Sets +Step.techniques+ to +args+, and defines +Step.ingredients+
+    
     def techniques= args
       @techniques = args
       @ingredients = args.select{|arg| arg.is_a? Ingredient}
@@ -117,6 +118,7 @@ module BreadCalculator
       out << "\n</p>\n"
       out
     end
+
   end
 
   ##
