@@ -133,7 +133,7 @@ FACTOR</b> regenerate the recipe, scaling up or down by
 
 
 <p style="margin-left:11%; margin-top: 1em">The recipe
-format consists of a metadata prelude, and steps.</p>
+format consists of a metadata prelude followed by steps.</p>
 
 <p style="margin-left:11%; margin-top: 1em">In prelude
 lines, anything before a colon is considered to be the name

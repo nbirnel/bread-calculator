@@ -123,6 +123,14 @@ module BreadCalculator
 
   ##
   # This class represents a recipe.
+  #
+  # Runtime-generated methods:
+  #
+  #     total_flours 
+  #     total_liquids
+  #     total_additives
+  #
+  # return totals of their respective types
 
   class Recipe
     attr_reader :steps, :metadata
@@ -134,7 +142,7 @@ module BreadCalculator
     # Other likely keys are: 
     # <tt>:prep_time, :total_time, :notes, :history, :serves, :makes,
     # :attribution</tt>.
-    
+
     def initialize metadata, steps
       @metadata = metadata
       @steps    = steps
@@ -164,6 +172,7 @@ module BreadCalculator
     #FIXME make this a method_missing so we can add new types on the fly
     #RENÉE - 'end.' is weird or no?
     #FIXME how do I get this into rdoc?
+     
     [:flours, :liquids, :additives].each do |s|
       define_method("total_#{s}") do
         instance_variable_get("@ingredients").select{|i| i.type == s}.map do |i|
@@ -265,7 +274,35 @@ module BreadCalculator
     ##
     # Parse text from IO object +input+. It is the caller's responsibility to
     # open and close the +input+ correctly.
-    
+    #
+    # text recipes consist of a metadata prelude followed by steps.
+    #
+    # In prelude lines,
+    # anything before a colon is considered to be the name of a metadata field;
+    # anything after the colon is a value to populate.
+    # Lines without colons are continuations of the 'notes' field.
+    # I suggest having at least a 'name' field.
+    # 
+    # A line starting with a hyphen ends the prelude and starts the first step. 
+    # 
+    # Each step is delimited by one or more blank lines.
+    # 
+    # Any line in a step starting with a space or a blank is an ingredient,
+    # consisting of quantity, units, and the ingredient itself.
+    #
+    # A brief sample:
+    #
+    #     name: imaginary bread
+    #     notes: This is a silly fake bread recipe
+    #     makes: 1 bad loaf
+    #     This line will become part of the notes
+    #     ---------------------
+    #     Mix:
+    #       500 g flour
+    #       300 g water
+    #
+    #     Bake at 375°
+
     def parse input
 
       while line = input.gets
