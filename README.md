@@ -98,22 +98,22 @@ can by scaled up or down.</p>
 
 
 <p style="margin-left:11%; margin-top: 1em"><b>--help</b>
-print this help</p>
+print a brief usage message</p>
 
 
 <p style="margin-left:11%; margin-top: 1em"><b>--summary</b>
-print a baker&rsquo;s percentage summary</p>
+print all baker&rsquo;s percentages of the recipe</p>
 
 <p style="margin-left:11%; margin-top: 1em"><b>--html</b>
 print recipe as html.</p>
 
 
 <p style="margin-left:11%; margin-top: 1em"><b>--weight</b>
-print the weight</p>
+print the weight of the recipe</p>
 
 <p style="margin-left:11%; margin-top: 1em"><b>--scale-by
 FACTOR</b> regenerate the recipe, scaling up or down by
-FACTOR</p>
+<b>FACTOR</b></p>
 
 <h2>EXAMPLES
 <a name="EXAMPLES"></a>
@@ -156,14 +156,14 @@ itself.</p>
 
 
 <p style="margin-left:11%; margin-top: 1em"><b>bread-calc</b>
-will attempt to guess at the type of ingredient, but you can
-always force it by including one of the words
+makes a crude attempt to guess at the type of ingredient,
+but you can always force it by including one of the words
 &rsquo;flour&rsquo;, &rsquo;liquid&rsquo;, or
 &rsquo;additive&rsquo; in the line.</p>
 
 <p style="margin-left:11%; margin-top: 1em">Here is a brief
-example (note that github displays the indenting
-incorrectly):</p>
+example (note that if you are reading this on github, you
+won&rsquo;t see the indenting):</p>
 
 <p style="margin-left:17%; margin-top: 1em">name: imaginary
 bread <br>
@@ -199,7 +199,7 @@ cheerfully assumed that all units are grams.</p>
 
 <p style="margin-left:11%; margin-top: 1em">It is undefined
 how &rsquo;liquid flour additive&rsquo; is parsed, but
-don&rsquo;t expect anything good.</p>
+don&rsquo;t expect anything sensible.</p>
 
 <h2>LICENSE
 <a name="LICENSE"></a>

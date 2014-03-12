@@ -14,19 +14,20 @@ or the recipe can by scaled up or down.
 .SH OPTIONS
 .LP
 .B --help 
-print this help
+print a brief usage message
 .LP
 .B --summary
-print a baker's percentage summary
+print all baker's percentages of the recipe
 .LP
 .B --html
 print recipe as html. 
 .LP
 .B --weight
-print the weight
+print the weight of the recipe
 .LP
 .B --scale-by FACTOR
-regenerate the recipe, scaling up or down by FACTOR
+regenerate the recipe, scaling up or down by 
+.B FACTOR
 .SH EXAMPLES
 .LP
 .B bread-calc --summary sample.recipe
@@ -51,13 +52,13 @@ Any line in a step starting with a space or a blank is an ingredient,
 consisting of quantity, units, and the ingredient itself.
 
 .B bread-calc
-will attempt to guess at the type of ingredient,
+makes a crude attempt to guess at the type of ingredient,
 but you can always force it by including 
 one of the words 'flour', 'liquid', or 'additive' in the line.
 
 Here is a brief example 
-(note that github displays the indenting incorrectly):
-
+(note that if you are reading this on github,
+you won't see the indenting):
 
 .in +4
 name: imaginary bread
@@ -91,7 +92,7 @@ Bake at 375\(de
 It is cheerfully assumed that all units are grams.
 
 It is undefined how 'liquid flour additive' is parsed,
-but don't expect anything good.
+but don't expect anything sensible.
 .SH LICENSE
 Copyright 2014 Noah Birnel
 .sp
