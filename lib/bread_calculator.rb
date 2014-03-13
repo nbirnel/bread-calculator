@@ -1,3 +1,14 @@
+def human_round number, base_precision = 0
+    precision = base_precision
+    if number < 10
+      precision = base_precision + 1
+    end
+    if number < 1
+      precision = base_precision + 2
+    end
+    f_number = sprintf "%.#{precision}f", number
+end
+
 ##
 # Classes for manipulating bread recipes and baker's percentages
 
@@ -5,6 +16,9 @@ module BreadCalculator
 
   require 'cgi'
 
+  ##
+  # Make a reasonably precise representation of +number+
+  
   ##
   # This class represents an ingredient in a Recipe
 
@@ -60,15 +74,7 @@ module BreadCalculator
     
     def to_s
       #FIXME check for existance
-      precision = 0
-      if @quantity < 10
-        precision = 1
-      end
-      if @quantity < 1
-        precision = 2
-      end
-      f_quantity = sprintf "%.#{precision}f", @quantity
-      "\t#{f_quantity} #{@units} #{@name}\n"
+      "\t#{human_round(@quantity)} #{@units} #{@name}\n"
     end
 
     ##
@@ -278,9 +284,13 @@ module BreadCalculator
   end
 
   ##
-  # This class represents a summary of a Recipe - no Steps or units, just
-  # baker's percentages of each ingredient, and a prelude of baker's 
-  # percentages for flours, liquids, and additives.
+  # This class represents a summary of a Recipe - like a Recipe, but:
+  #
+  # Ingredients will be unitless 
+  # and the quantities expressed in baker's percentages,
+  #
+  # Metadata will include baker's percentages of 
+  # flours, liquids, and additives.
 
   class Summary < Recipe
 
@@ -288,16 +298,23 @@ module BreadCalculator
       super
     end
 
-    ##
-    # Print it nicely
-    
-    #def to_s
-    #  out = ''
-    #  self.types.each{|k,v| out << "#{k}: #{v}\n"}
-    #  out << "--------------------\n"
-    #  self.ingredients.each{|k,v| out << "#{k}: #{v}\n"}
-    #  out
-    #end
+    def weight
+      nil
+    end
+
+    def summary
+      self
+    end
+
+    def to_s
+      out = ''
+      # find totals and *100, conditional sprintf
+      self.metadata.each{|k,v| out << "#{k}: #{v}\n"}
+      out << "--------------------\n"
+      self.steps.each{|s| out << s.to_s }
+      out
+    end
+
   end
 
   ##
