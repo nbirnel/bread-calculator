@@ -19,7 +19,7 @@ module BreadCalculator
     # +:liquids+, or +:additives+.
     
     def initialize name, info={}
-      @units = 'grams'
+      #@units = 'grams'
       @name = name
       @info = info
       info.each do |k,v| 
@@ -247,7 +247,7 @@ module BreadCalculator
         Step.new step_args
       end
 
-      Recipe.new new_meta, new_steps
+      Summary.new new_meta, new_steps
     end
 
     ##
@@ -273,6 +273,29 @@ module BreadCalculator
       out
     end
 
+  end
+
+  ##
+  # This class represents a summary of a Recipe - no Steps or units, just
+  # baker's percentages of each ingredient, and a prelude of baker's 
+  # percentages for flours, liquids, and additives.
+
+  class Summary < Recipe
+
+    def initialize metadata, steps
+      super
+    end
+
+    ##
+    # Print it nicely
+    
+    #def to_s
+    #  out = ''
+    #  self.types.each{|k,v| out << "#{k}: #{v}\n"}
+    #  out << "--------------------\n"
+    #  self.ingredients.each{|k,v| out << "#{k}: #{v}\n"}
+    #  out
+    #end
   end
 
   ##
@@ -396,34 +419,6 @@ module BreadCalculator
       end
     end
 
-  end
-
-  ##
-  # This class represents a summary of a Recipe - no Steps or units, just
-  # baker's percentages of each ingredient, and a prelude of baker's 
-  # percentages for flours, liquids, and additives.
-
-  class Summary
-    attr_accessor :types, :ingredients
-
-    ##
-    # Create a new Summary of +types+ and +ingredients+
-
-    def initialize types, ingredients
-      @types = types
-      @ingredients = ingredients
-    end
-
-    ##
-    # Print it nicely
-    
-    def to_s
-      out = ''
-      self.types.each{|k,v| out << "#{k}: #{v}\n"}
-      out << "--------------------\n"
-      self.ingredients.each{|k,v| out << "#{k}: #{v}\n"}
-      out
-    end
   end
 
 end
