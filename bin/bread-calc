@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
-require  "#{File.dirname(__FILE__)}/../lib/bread_calculator"
-#require 'bread_calculator'
+#require  "#{File.dirname(__FILE__)}/../lib/bread_calculator"
+require 'bread_calculator'
 
 def htm_header
   puts '<head>'
@@ -30,16 +30,16 @@ EOF
 
 end
 
-@get = 'r'
 @help = nil
+@opt = ['r']
 
 loop { case ARGV[0]
   when /--help/     then             @help = 'help'     ;  ARGV.shift; break
-  when /--summary/  then             @get  = 'r.summary';  ARGV.shift
-  when /--html/     then             @get  = 'r.to_html';  ARGV.shift
-  when /--weight/   then             @get  = 'r.weight';   ARGV.shift
     #.to_f protects against 'no .<digit> floating literal anymore' for .33
-  when /--scale-by/ then ARGV.shift; @get  = "r.scale_by #{ARGV.shift.to_f}"
+  when /--scale-by/ then ARGV.shift; @opt[1]  = "scale_by(#{ARGV.shift.to_f})"
+  when /--summary/  then             @opt[1]  = 'summary';  ARGV.shift
+  when /--html/     then             @opt[2]  = 'to_html';  ARGV.shift
+  when /--weight/   then             @opt[2]  = 'weight';   ARGV.shift
   when /--/ then ARGV.shift; break
   when /^-/ then help 1
   else break
@@ -47,8 +47,10 @@ end; }
 
 help if @help
 
+@method_chain = @opt.select{|e| e if e}.join('.')
+
 parser = BreadCalculator::Parser.new
 r = parser.parse ARGF.file
-htm_header if @get.include? 'html'
-puts eval("#{@get}")
+htm_header if @method_chain.include? 'to_html'
+puts eval("#{@method_chain}")
 

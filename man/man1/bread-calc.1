@@ -14,20 +14,28 @@ or the recipe can by scaled up or down.
 .SH OPTIONS
 .LP
 .B --help 
-print a brief usage message
+Print a brief usage message.
 .LP
 .B --summary
-print all baker's percentages of the recipe
+Print all baker's percentages of the recipe. 
+Over-rides 
+.B --scale-by
 .LP
 .B --html
-print recipe as html. 
+Print recipe as html. 
+Over-rides 
+.B --weight
 .LP
 .B --weight
-print the weight of the recipe
+Print the weight of the recipe.
+Over-rides 
+.B --html
 .LP
-.B --scale-by FACTOR
-regenerate the recipe, scaling up or down by 
+.B --scale-by FACTOR.
+Regenerate the recipe, scaling up or down by 
 .B FACTOR
+Over-rides 
+.B --summary.
 .SH EXAMPLES
 .LP
 .B bread-calc --summary sample.recipe
