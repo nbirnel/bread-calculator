@@ -116,9 +116,12 @@ Print the weight of the recipe. Over-rides <b>--html</b> or
 
 <p style="margin-left:11%; margin-top: 1em"><b>--to
 WEIGHT</b> Regenerate the recipe or summary to <b>WEIGHT</b>
-total weight. Over-rides <b>--html</b> or <b>--weight.
---scale-by FACTOR.</b> Regenerate the recipe, scaling up or
-down by <b>FACTOR</b> Over-rides <b>--summary.</b></p>
+total weight. Over-rides <b>--html</b> or
+<b>--weight.</b></p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>--scale-by
+FACTOR.</b> Regenerate the recipe, scaling up or down by
+<b>FACTOR</b> Over-rides <b>--summary.</b></p>
 
 <h2>EXAMPLES
 <a name="EXAMPLES"></a>
