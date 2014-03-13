@@ -1,4 +1,8 @@
+##
+# round +number+ depending on it's magnitude
+
 def human_round number, base_precision = 0
+    #FIXME there is an algorithm for this. What is it?
     precision = base_precision
     if number < 10
       precision = base_precision + 1
