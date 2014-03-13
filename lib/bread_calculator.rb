@@ -39,6 +39,15 @@ module BreadCalculator
       Ingredient.new(self.name, scaled)
     end
     
+    def to_bp flours
+      scaled = Hash.new
+      self.info.each do |k, v|
+        scaled[k] = v
+        scaled[k] = v*ratio  if k == :quantity
+      end
+      Ingredient.new(self.name, scaled)
+    end
+    
     ##
     # Print a nice text version of Ingredient
     
@@ -203,7 +212,7 @@ module BreadCalculator
 
     def scale_by ratio
       new_steps = self.steps.map do |s| 
-        step_args =  s.techniques.map do |t| 
+        step_args = s.techniques.map do |t| 
           t.is_a?(Ingredient) ? t.scale_by(ratio) : t
         end
         Step.new step_args
@@ -216,16 +225,24 @@ module BreadCalculator
     # Returns a Summary
     
     def summary
-      types = Hash.new
+      new_meta = self.metadata
       [:flours, :liquids, :additives].each do |s|
-        types["total_#{s}"] = self.bakers_percent eval("self.total_#{s}")
+        new_meta["total_#{s}"] = eval "self.total_#{s}"
       end
       
       l_ingredients = Hash.new
       self.ingredients.map do |i|
         l_ingredients[i.name] = self.bakers_percent i.quantity
       end
-      Summary.new types, l_ingredients
+
+      new_steps = self.steps.map do |s| 
+        step_args = s.techniques.map do |t| 
+          t.is_a?(Ingredient) ? t.as_bp(self.bakers_percent_100) : t
+        end
+        Step.new step_args
+      end
+
+      Recipe.new new_meta, new_steps
     end
 
     ##
