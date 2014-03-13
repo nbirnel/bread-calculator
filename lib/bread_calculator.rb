@@ -39,6 +39,8 @@ module BreadCalculator
       Ingredient.new(self.name, scaled)
     end
 
+    #FIXME refactor scale_by and as_bp 
+    
     ##
     # Returns a new unitless Ingredient as a baker's percentage of +bp_100+
     
