@@ -98,22 +98,27 @@ can by scaled up or down.</p>
 
 
 <p style="margin-left:11%; margin-top: 1em"><b>--help</b>
-print a brief usage message</p>
+Print a brief usage message.</p>
 
 
 <p style="margin-left:11%; margin-top: 1em"><b>--summary</b>
-print all baker&rsquo;s percentages of the recipe</p>
+Print all baker&rsquo;s percentages of the recipe.
+Over-rides <b>--scale-by</b></p>
 
 <p style="margin-left:11%; margin-top: 1em"><b>--html</b>
-print recipe as html.</p>
+Print recipe as html. Over-rides <b>--weight</b> or
+<b>--to.</b></p>
 
 
 <p style="margin-left:11%; margin-top: 1em"><b>--weight</b>
-print the weight of the recipe</p>
+Print the weight of the recipe. Over-rides <b>--html</b> or
+<b>--to.</b></p>
 
-<p style="margin-left:11%; margin-top: 1em"><b>--scale-by
-FACTOR</b> regenerate the recipe, scaling up or down by
-<b>FACTOR</b></p>
+<p style="margin-left:11%; margin-top: 1em"><b>--to
+WEIGHT</b> Regenerate the recipe or summary to <b>WEIGHT</b>
+total weight. Over-rides <b>--html</b> or <b>--weight.
+--scale-by FACTOR.</b> Regenerate the recipe, scaling up or
+down by <b>FACTOR</b> Over-rides <b>--summary.</b></p>
 
 <h2>EXAMPLES
 <a name="EXAMPLES"></a>

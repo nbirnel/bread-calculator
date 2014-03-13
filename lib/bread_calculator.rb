@@ -48,7 +48,7 @@ module BreadCalculator
     ##
     # Returns a new Ingredient, scaled from current instance by +ratio+
     
-    def scale_by ratio
+    def scale_by ratio, units=self.units
       scaled = Hash.new
       self.info.each do |k, v|
         scaled[k] = v
@@ -248,11 +248,6 @@ module BreadCalculator
         new_meta["total_#{s}"] = eval "self.bakers_percent self.total_#{s}"
       end
       
-      #l_ingredients = Hash.new
-      #self.ingredients.map do |i|
-      #  l_ingredients[i.name] = self.bakers_percent i.quantity
-      #end
-
       new_steps = self.steps.map do |s| 
         step_args = s.techniques.map do |t| 
           t.is_a?(Ingredient) ? t.as_bp(self.bakers_percent_100) : t
@@ -326,6 +321,25 @@ module BreadCalculator
     def to_html
       #FIXME obviously inadequate
       super
+    end
+
+    def recipe weight, units='grams'
+      
+      new_metadata = self.metadata.reject{|k,v| k.to_s =~ /^total_/}
+
+      totals = self.metadata.select{|k,v| k.to_s =~ /^total_/}
+      all_totals = totals.values.inject(:+).to_f
+      new_bp_100 = weight / all_totals
+      
+      new_steps = self.steps.map do |s| 
+        step_args = s.techniques.map do |t| 
+          t.is_a?(Ingredient) ? t.scale_by(new_bp_100, units) : t
+        end
+        Step.new step_args
+      end
+
+      Recipe.new new_metadata, new_steps
+      
     end
 
   end

@@ -17,6 +17,7 @@ describe BreadCalculator do
     @bake    = BreadCalculator::Step.new 'Form a loaf, rise for 2 hours, Bake at 375° for 45 minutes.'
     @meta    = {:notes => 'nice sandwich bread'}
     @recipe  = BreadCalculator::Recipe.new @meta, [@proof, @wet, @dry, @mix, @bake]
+    @summary = @recipe.summary
   end
 
   describe BreadCalculator::Ingredient do
@@ -49,7 +50,7 @@ describe BreadCalculator do
     end
 
     it 'generates a baker\'s percentage summary' do
-      @recipe.summary.is_a?(BreadCalculator::Recipe).should be_true
+      @summary.is_a?(BreadCalculator::Summary).should be_true
     end
 
     it 'scales' do
@@ -67,6 +68,18 @@ describe BreadCalculator do
     end
 
   end
+
+  describe BreadCalculator::Summary do
+    before do
+      @new_recipe = @summary.recipe(1000, 'g')
+    end
+
+    it 'generates a Recipe' do
+      @new_recipe.is_a?(BreadCalculator::Recipe).should be_true
+      @new_recipe.weight.should == 1000
+    end
+  end
+
 
   describe BreadCalculator::Parser do
     before do

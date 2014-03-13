@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
-#require  "#{File.dirname(__FILE__)}/../lib/bread_calculator"
-require 'bread_calculator'
+require  "#{File.dirname(__FILE__)}/../lib/bread_calculator"
+#require 'bread_calculator'
 
 def htm_header
   puts '<head>'
@@ -17,6 +17,7 @@ where OPTIONS are any of:
   --summary
   --html
   --weight
+  --recipe
   --scale-by FACTOR
 
 Install the man page, or go to     
@@ -40,6 +41,7 @@ loop { case ARGV[0]
   when /--summary/  then             @opt[1]  = 'summary';  ARGV.shift
   when /--html/     then             @opt[2]  = 'to_html';  ARGV.shift
   when /--weight/   then             @opt[2]  = 'weight';   ARGV.shift
+  when /--to/       then ARGV.shift; @opt[2]  = "recipe(#{ARGV.shift.to_f})"
   when /--/ then ARGV.shift; break
   when /^-/ then help 1
   else break
