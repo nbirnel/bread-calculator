@@ -38,12 +38,17 @@ module BreadCalculator
       end
       Ingredient.new(self.name, scaled)
     end
+
+    ##
+    # Returns a new unitless Ingredient as a baker's percentage of +bp_100+
     
-    def to_bp flours
+    def as_bp bp_100
+      info = self.info.reject{|k,v| k == :units}
+
       scaled = Hash.new
-      self.info.each do |k, v|
+      info.each do |k, v|
         scaled[k] = v
-        scaled[k] = v*ratio  if k == :quantity
+        scaled[k] = v / bp_100.to_f  if k == :quantity
       end
       Ingredient.new(self.name, scaled)
     end
@@ -227,13 +232,13 @@ module BreadCalculator
     def summary
       new_meta = self.metadata
       [:flours, :liquids, :additives].each do |s|
-        new_meta["total_#{s}"] = eval "self.total_#{s}"
+        new_meta["total_#{s}"] = eval "self.bakers_percent self.total_#{s}"
       end
       
-      l_ingredients = Hash.new
-      self.ingredients.map do |i|
-        l_ingredients[i.name] = self.bakers_percent i.quantity
-      end
+      #l_ingredients = Hash.new
+      #self.ingredients.map do |i|
+      #  l_ingredients[i.name] = self.bakers_percent i.quantity
+      #end
 
       new_steps = self.steps.map do |s| 
         step_args = s.techniques.map do |t| 
