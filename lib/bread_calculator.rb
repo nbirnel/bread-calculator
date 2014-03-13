@@ -309,10 +309,16 @@ module BreadCalculator
     def to_s
       out = ''
       # find totals and *100, conditional sprintf
-      self.metadata.each{|k,v| out << "#{k}: #{v}\n"}
+      self.metadata.each do |k,v| 
+        nv =  k.to_s =~ /^total_/ ?  "#{human_round(v*100).to_s}%" : v
+        out << "#{k}: #{nv}\n"
+      end
       out << "--------------------\n"
       self.steps.each{|s| out << s.to_s }
       out
+    end
+
+    def to_html
     end
 
   end
