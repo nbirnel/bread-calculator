@@ -72,9 +72,10 @@ module BreadCalculator
     ##
     # Print a nice text version of Ingredient
     
-    def to_s
+    def to_s summary=nil
+      q = summary ? "#{human_round(@quantity*100).to_s}%" : human_round(@quantity)
       #FIXME check for existance
-      "\t#{human_round(@quantity)} #{@units} #{@name}\n"
+      "\t#{q} #{@units} #{@name}\n"
     end
 
     ##
@@ -118,10 +119,10 @@ module BreadCalculator
     ##
     # Print a nice text version of Step
     
-    def to_s
+    def to_s summary=nil
       out = ''
       self.techniques.each do |t| 
-        tmp =  t.is_a?(Ingredient) ? t.to_s : "#{t.chomp}\n"
+        tmp =  t.is_a?(Ingredient) ? t.to_s(summary) : "#{t.chomp}\n"
         out << tmp
       end
       out << "\n"
@@ -307,18 +308,20 @@ module BreadCalculator
     end
 
     def to_s
+      #FIXME this should be calling super somehow
       out = ''
-      # find totals and *100, conditional sprintf
       self.metadata.each do |k,v| 
-        nv =  k.to_s =~ /^total_/ ?  "#{human_round(v*100).to_s}%" : v
+        nv =  k.to_s =~ /^total_/ ? "#{human_round(v*100).to_s}%" : v
         out << "#{k}: #{nv}\n"
       end
       out << "--------------------\n"
-      self.steps.each{|s| out << s.to_s }
+      self.steps.each{|s| out << s.to_s(:summary)}
       out
     end
 
     def to_html
+      #FIXME obviously inadequate
+      super
     end
 
   end
