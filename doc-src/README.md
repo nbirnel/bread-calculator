@@ -36,6 +36,7 @@ License
 © 2014 Noah Birnel
 MIT license
 
+[![Code Climate](https://codeclimate.com/github/nbirnel/bread-calculator.png)](https://codeclimate.com/github/nbirnel/bread-calculator)
+
 Man page
 ---------
-[![Code Climate](https://codeclimate.com/github/nbirnel/bread-calculator.png)](https://codeclimate.com/github/nbirnel/bread-calculator)
