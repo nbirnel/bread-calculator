@@ -465,28 +465,25 @@ module BreadCalculator
 
     def line_to_ingredient match
       h = Hash.new
+      liquids   = Regexp.union ['water', 'egg', 'mashed', 'milk']
+      additives = Regexp.union ['dry', 'powdered']
 
       h[:quantity] = match[:quantity].strip.to_f
       h[:units]    = match[:units].strip
       ingredient   = match[:ingredient].strip
 
-      #FIXME refactor
       h[:type] = :additives #if it doesn't match anything else
+
       h[:type] = :flours    if ingredient =~ /meal/
+      h[:type] = :liquids   if ingredient =~ liquids
+      h[:type] = :additives if ingredient =~ additives
 
-      h[:type] = :liquids   if ingredient =~ /water/
-      h[:type] = :liquids   if ingredient =~ /egg/
-      h[:type] = :liquids   if ingredient =~ /mashed/
-      h[:type] = :liquids   if ingredient =~ /milk/
-
-      h[:type] = :additives if ingredient =~ /dry/
-      h[:type] = :additives if ingredient =~ /powdered/
-
+      # These override any other guesses. FIXME refactor?
       h[:type] = :flours    if ingredient =~ /flour/
       h[:type] = :liquids   if ingredient =~ /liquid/
-      h[:type] = :additive  if ingredient =~ /additive/
+      h[:type] = :additives if ingredient =~ /additive/
 
-      ing = BreadCalculator::Ingredient.new ingredient, h
+      BreadCalculator::Ingredient.new ingredient, h
     end
 
   end
