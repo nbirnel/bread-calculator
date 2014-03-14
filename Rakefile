@@ -30,7 +30,7 @@ task :test => :spec
 task :spec 
 
 file 'doc' => LIB  do
-  `rdoc lib/`        #FIXME shell out not cool
+  `rdoc`        #FIXME shell out not cool
 end
 
 task :readme => README
