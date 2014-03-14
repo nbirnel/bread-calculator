@@ -38,6 +38,7 @@ MIT license
 
 [![Build Status](https://travis-ci.org/nbirnel/bread-calculator.png?branch=master)](https://travis-ci.org/nbirnel/bread-calculator)
 [![Code Climate](https://codeclimate.com/github/nbirnel/bread-calculator.png)](https://codeclimate.com/github/nbirnel/bread-calculator)
+[![Gem Version](https://badge.fury.io/rb/bread_calculator.png)](http://badge.fury.io/rb/bread_calculator)
 
 Man page
 ---------
