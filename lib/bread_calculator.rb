@@ -240,6 +240,12 @@ module BreadCalculator
     end
 
     ##
+    # Return a new recipe of weight and units +args+
+    def recipe args=1
+      self.summary.recipe args
+    end
+
+    ##
     # Returns a Summary
     
     def summary

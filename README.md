@@ -107,14 +107,14 @@ Over-rides <b>--scale-by</b></p>
 
 <p style="margin-left:11%; margin-top: 1em"><b>--html</b>
 Print recipe as html. Over-rides <b>--weight</b> or
-<b>--to.</b></p>
+<b>--scale-to.</b></p>
 
 
 <p style="margin-left:11%; margin-top: 1em"><b>--weight</b>
 Print the weight of the recipe. Over-rides <b>--html</b> or
-<b>--to.</b></p>
+<b>--scale-to.</b></p>
 
-<p style="margin-left:11%; margin-top: 1em"><b>--to
+<p style="margin-left:11%; margin-top: 1em"><b>--scale-to
 WEIGHT</b> Regenerate the recipe or summary to <b>WEIGHT</b>
 total weight. Over-rides <b>--html</b> or
 <b>--weight.</b></p>
