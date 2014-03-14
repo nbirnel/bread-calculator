@@ -20,6 +20,20 @@ module BreadCalculator
 
   require 'cgi'
 
+  class Version
+    MAJOR = 0 
+    MINOR = 5 
+    PATCH = 2 
+
+    class << self
+      def to_s
+        [MAJOR, MINOR, PATCH].join('.')
+      end
+    end
+  end
+
+  VERSION = Version.to_s
+
   ##
   # Make a reasonably precise representation of +number+
   

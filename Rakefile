@@ -1,10 +1,13 @@
 require 'rspec/core/rake_task'
 require 'rake/clean'
+load 'lib/bread_calculator.rb'
+
 RSpec::Core::RakeTask.new('spec')
 
-VER  = '0.5.1'
+VER = BreadCalculator::VERSION
 PROG = 'bread_calculator'
 NAME = 'bread-calc'
+
 LIB  = FileList['lib/*.rb']
 BIN  = FileList['bin/*.rb']
 TEST = FileList['spec/*.rb']

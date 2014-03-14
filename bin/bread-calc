@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
-require  "#{File.dirname(__FILE__)}/../lib/bread_calculator"
-#require 'bread_calculator'
+#require  "#{File.dirname(__FILE__)}/../lib/bread_calculator"
+require 'bread_calculator'
 
 def htm_header
   puts '<head>'
