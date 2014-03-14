@@ -294,6 +294,7 @@ module BreadCalculator
     # It is the caller's responsibility to provide appropriate headers, etc.
 
     def to_html
+      #FIXME refactor with to_s
       out = ''
       self.metadata.each{|k,v| out << "<p>\n<b>#{k}</b>: #{v}\n</p>\n"}
       out << "--------------------\n"
@@ -327,7 +328,7 @@ module BreadCalculator
     end
 
     def to_s
-      #FIXME this should be calling super somehow
+      #FIXME this should be calling super somehow -refactor with Recipe.to_s
       out = ''
       self.metadata.each do |k,v| 
         nv =  k.to_s =~ /^total_/ ? "#{human_round(v*100).to_s}%" : v
@@ -344,6 +345,7 @@ module BreadCalculator
     end
 
     def recipe weight, units='grams'
+      #FIXME refactor with Recipe.summary
       
       new_metadata = self.metadata.reject{|k,v| k.to_s =~ /^total_/}
 
@@ -458,31 +460,31 @@ module BreadCalculator
 
     def preprocess_step line
       ing_regex = /^\s+((?<qty>[0-9.]+\s*)(?<units>g)?\s+)?(?<item>.*)/
+      ing_regex =~ line ? line_to_ingredient(Regexp.last_match) : line.strip
+    end
+
+    def line_to_ingredient match
       h = Hash.new
-      if ing_regex =~ line 
-        match = Regexp.last_match
-        h[:quantity] = match[:qty].strip.to_f
-        h[:units]    = match[:units]
-        ingredient   = match[:item].strip
 
-        #FIXME refactor
-        h[:type] = :additives #if it doesn't match anything else
-        h[:type] = :flours    if ingredient =~ /meal/
-        h[:type] = :liquids   if ingredient =~ /water/
-        h[:type] = :liquids   if ingredient =~ /egg/
-        h[:type] = :liquids   if ingredient =~ /mashed/
-        h[:type] = :liquids   if ingredient =~ /milk/
-        h[:type] = :additives if ingredient =~ /dry/
-        h[:type] = :additives if ingredient =~ /powdered/
+      h[:quantity] = match[:qty].strip.to_f
+      h[:units]    = match[:units]
+      ingredient   = match[:item].strip
 
-        h[:type] = :flours    if ingredient =~ /flour/
-        h[:type] = :liquids   if ingredient =~ /liquid/
-        h[:type] = :liquids   if ingredient =~ /additive/
+      #FIXME refactor
+      h[:type] = :additives #if it doesn't match anything else
+      h[:type] = :flours    if ingredient =~ /meal/
+      h[:type] = :liquids   if ingredient =~ /water/
+      h[:type] = :liquids   if ingredient =~ /egg/
+      h[:type] = :liquids   if ingredient =~ /mashed/
+      h[:type] = :liquids   if ingredient =~ /milk/
+      h[:type] = :additives if ingredient =~ /dry/
+      h[:type] = :additives if ingredient =~ /powdered/
 
-        ing = BreadCalculator::Ingredient.new ingredient, h
-      else
-        line.strip
-      end
+      h[:type] = :flours    if ingredient =~ /flour/
+      h[:type] = :liquids   if ingredient =~ /liquid/
+      h[:type] = :liquids   if ingredient =~ /additive/
+
+      ing = BreadCalculator::Ingredient.new ingredient, h
     end
 
   end
