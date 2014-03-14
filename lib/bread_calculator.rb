@@ -459,16 +459,16 @@ module BreadCalculator
     end
 
     def preprocess_step line
-      ing_regex = /^\s+((?<qty>[0-9.]+\s*)(?<units>g)?\s+)?(?<item>.*)/
+      ing_regex = /^\s+((?<quantity>[0-9.]+\s*)(?<units>g)?\s+)?(?<ingredient>.*)/
       ing_regex =~ line ? line_to_ingredient(Regexp.last_match) : line.strip
     end
 
     def line_to_ingredient match
       h = Hash.new
 
-      h[:quantity] = match[:qty].strip.to_f
-      h[:units]    = match[:units]
-      ingredient   = match[:item].strip
+      h[:quantity] = match[:quantity].strip.to_f
+      h[:units]    = match[:units].strip
+      ingredient   = match[:ingredient].strip
 
       #FIXME refactor
       h[:type] = :additives #if it doesn't match anything else
