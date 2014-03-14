@@ -38,3 +38,4 @@ MIT license
 
 Man page
 ---------
+[![Code Climate](https://codeclimate.com/github/nbirnel/bread-calculator.png)](https://codeclimate.com/github/nbirnel/bread-calculator)

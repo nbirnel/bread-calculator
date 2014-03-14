@@ -2,7 +2,7 @@ require 'rspec/core/rake_task'
 require 'rake/clean'
 RSpec::Core::RakeTask.new('spec')
 
-VER  = '0.5.0'
+VER  = '0.5.1'
 PROG = 'bread_calculator'
 NAME = 'bread-calc'
 LIB  = FileList['lib/*.rb']
