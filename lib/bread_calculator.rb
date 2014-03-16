@@ -1,16 +1,16 @@
 ##
-# round +number+ depending on it's magnitude
+# return reasonably precise version of +number+ depending on it's magnitude
 
 def human_round number, base_precision = 0
-    #FIXME there is an algorithm for this. What is it?
-    precision = base_precision
-    if number < 10
-      precision = base_precision + 1
-    end
-    if number < 1
-      precision = base_precision + 2
-    end
-    f_number = sprintf "%.#{precision}f", number
+  #FIXME there is an algorithm for this. What is it?
+  precision = base_precision
+  if number < 10
+    precision = base_precision + 1
+  end
+  if number < 1
+    precision = base_precision + 2
+  end
+  f_number = sprintf "%.#{precision}f", number
 end
 
 ##
@@ -34,9 +34,6 @@ module BreadCalculator
 
   VERSION = Version.to_s
 
-  ##
-  # Make a reasonably precise representation of +number+
-  
   ##
   # This class represents an ingredient in a Recipe
 
