@@ -1,6 +1,6 @@
 figure out how to deal with different units
 smarter (or at least shorter) flour / liquid type determination
+  add rye, ww, all-purpose?
 refactor to_html (CGI only in Recipe, other changes?)
-make html, summary, weight 'addons' in bin
-add Summary.to_html
 refactor Summary.to_s to call super
+check for empty 'types' - especially flour!
