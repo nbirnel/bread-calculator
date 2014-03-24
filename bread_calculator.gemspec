@@ -4,6 +4,7 @@ Gem::Specification.new do |s|
   s.name        = 'bread_calculator'
   s.version     = BreadCalculator::VERSION
   s.date        = '2014-03-14'
+  s.required_ruby_version = '>=1.9.2'
   s.summary     = "calculate baker's percentages"
   s.description = "a gem and command-line wrapper to generate baker's
                    percentages from a bread recipe"
